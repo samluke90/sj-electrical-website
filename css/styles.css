@@ -1576,3 +1576,267 @@ select.form-control {
 .mt-20 { margin-top: 20px; }
 .mb-20 { margin-bottom: 20px; }
 .hidden { display: none; }
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+[data-theme="dark"] {
+    --primary: #4d9fff;
+    --primary-dark: #3385ff;
+    --dark: #E8E8E8;
+    --dark-light: #B0B0B0;
+    --light: #1a1a2e;
+    --white: #0f0f1a;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] body {
+    background-color: #0f0f1a;
+}
+
+[data-theme="dark"] .header {
+    background: #0f0f1a;
+    border-bottom: 1px solid #2a2a3e;
+}
+
+[data-theme="dark"] .mobile-nav {
+    background: #0f0f1a;
+}
+
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .quote-form-card,
+[data-theme="dark"] .contact-form-section,
+[data-theme="dark"] .credentials-card,
+[data-theme="dark"] .hero-card,
+[data-theme="dark"] .upload-preview,
+[data-theme="dark"] .about-badge-card,
+[data-theme="dark"] .cert-card {
+    background: #1a1a2e;
+}
+
+[data-theme="dark"] .form-control {
+    background: #1a1a2e;
+    border-color: #2a2a3e;
+    color: #E8E8E8;
+}
+
+[data-theme="dark"] .form-control:focus {
+    border-color: var(--primary);
+}
+
+[data-theme="dark"] .upload-zone {
+    background: rgba(77, 159, 255, 0.05);
+    border-color: var(--primary);
+}
+
+[data-theme="dark"] .footer {
+    background: #0a0a12;
+}
+
+[data-theme="dark"] .mobile-menu-btn span {
+    background: #E8E8E8;
+}
+
+/* Dark mode transition for flicker effect */
+body.theme-transitioning {
+    animation: flicker 0.5s ease;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    10% { opacity: 0.4; }
+    20% { opacity: 0.8; }
+    30% { opacity: 0.2; }
+    40% { opacity: 0.9; }
+    50% { opacity: 0.3; }
+    60% { opacity: 0.8; }
+    70% { opacity: 0.5; }
+    80% { opacity: 0.9; }
+    90% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* ============================================
+   Light Switch Toggle
+   ============================================ */
+.light-switch {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.switch-plate {
+    width: 50px;
+    height: 80px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border-radius: 8px;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 2px solid #d0d0d0;
+}
+
+[data-theme="dark"] .switch-plate {
+    background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
+    border-color: #3a3a4e;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 3px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.switch-toggle {
+    width: 24px;
+    height: 40px;
+    background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 50%, #f5f5f5 100%);
+    border-radius: 4px;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    transition: all 0.15s ease;
+    transform: rotateX(0deg);
+    transform-origin: center bottom;
+}
+
+.switch-toggle.off {
+    transform: rotateX(-25deg);
+    box-shadow:
+        0 -2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .switch-toggle {
+    background: linear-gradient(180deg, #4a4a5e 0%, #3a3a4e 50%, #4a4a5e 100%);
+}
+
+.light-switch:hover .switch-plate {
+    transform: scale(1.05);
+}
+
+.light-switch:active .switch-toggle {
+    transform: rotateX(-15deg);
+}
+
+.switch-label {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--dark);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.light-switch:hover .switch-label {
+    opacity: 1;
+}
+
+/* ============================================
+   Spark Cursor Effect
+   ============================================ */
+.spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    animation: sparkFade 0.6s ease-out forwards;
+}
+
+.spark-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--secondary), 0 0 12px var(--secondary);
+}
+
+@keyframes sparkFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes sparkMove1 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(15px, -20px); }
+}
+
+@keyframes sparkMove2 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-15px, -18px); }
+}
+
+@keyframes sparkMove3 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 5px); }
+}
+
+@keyframes sparkMove4 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-18px, 8px); }
+}
+
+@keyframes sparkMove5 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(5px, 22px); }
+}
+
+.spark-particle:nth-child(1) { animation: sparkMove1 0.5s ease-out forwards; }
+.spark-particle:nth-child(2) { animation: sparkMove2 0.5s ease-out forwards; }
+.spark-particle:nth-child(3) { animation: sparkMove3 0.5s ease-out forwards; }
+.spark-particle:nth-child(4) { animation: sparkMove4 0.5s ease-out forwards; }
+.spark-particle:nth-child(5) { animation: sparkMove5 0.5s ease-out forwards; }
+
+/* Electric arc on click */
+.electric-arc {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+}
+
+.arc-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to top, transparent, var(--secondary), transparent);
+    transform-origin: bottom center;
+    animation: arcBurst 0.3s ease-out forwards;
+}
+
+@keyframes arcBurst {
+    0% {
+        opacity: 1;
+        transform: scaleY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(1);
+    }
+}
