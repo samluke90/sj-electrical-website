@@ -1840,3 +1840,406 @@ body.theme-transitioning {
         transform: scaleY(1);
     }
 }
+
+/* ============================================
+   Lightbulb Loading Animation
+   ============================================ */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.lightbulb-container {
+    position: relative;
+    width: 120px;
+    height: 180px;
+}
+
+.lightbulb {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.bulb-glass {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50% 50% 45% 45%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.bulb-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.1s ease;
+}
+
+.bulb-filament {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+}
+
+.filament-wire {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.filament-wire::before,
+.filament-wire::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    bottom: 0;
+}
+
+.filament-wire::before {
+    left: -8px;
+    transform: rotate(-15deg);
+    transform-origin: bottom center;
+}
+
+.filament-wire::after {
+    left: 8px;
+    transform: rotate(15deg);
+    transform-origin: bottom center;
+}
+
+.bulb-base {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 35px;
+    background: linear-gradient(180deg, #666 0%, #444 50%, #666 100%);
+    border-radius: 0 0 5px 5px;
+}
+
+.bulb-base::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    right: -5px;
+    height: 8px;
+    background: linear-gradient(180deg, #888 0%, #555 100%);
+    border-radius: 3px;
+}
+
+.bulb-screw {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: repeating-linear-gradient(
+        0deg,
+        #555 0px,
+        #555 4px,
+        #777 4px,
+        #777 8px
+    );
+    border-radius: 0 0 50% 50%;
+}
+
+/* Lightbulb states */
+.lightbulb.flickering .bulb-glow {
+    animation: bulbFlicker 1.5s ease-in-out;
+}
+
+.lightbulb.flickering .filament-wire,
+.lightbulb.flickering .filament-wire::before,
+.lightbulb.flickering .filament-wire::after {
+    animation: filamentFlicker 1.5s ease-in-out;
+}
+
+.lightbulb.on .bulb-glow {
+    opacity: 1;
+    width: 100px;
+    height: 100px;
+    filter: blur(30px);
+}
+
+.lightbulb.on .bulb-glass {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+}
+
+.lightbulb.on .filament-wire,
+.lightbulb.on .filament-wire::before,
+.lightbulb.on .filament-wire::after {
+    background: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary);
+}
+
+@keyframes bulbFlicker {
+    0% { opacity: 0; }
+    10% { opacity: 0.3; }
+    15% { opacity: 0; }
+    25% { opacity: 0.5; }
+    30% { opacity: 0.1; }
+    40% { opacity: 0.7; }
+    45% { opacity: 0.2; }
+    55% { opacity: 0.8; }
+    60% { opacity: 0.4; }
+    70% { opacity: 0.9; }
+    75% { opacity: 0.5; }
+    85% { opacity: 1; }
+    90% { opacity: 0.7; }
+    100% { opacity: 1; width: 100px; height: 100px; filter: blur(30px); }
+}
+
+@keyframes filamentFlicker {
+    0% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
+    10% { background: rgba(255, 200, 100, 0.5); box-shadow: 0 0 3px rgba(255, 200, 100, 0.5); }
+    15% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
+    25% { background: rgba(255, 200, 100, 0.6); box-shadow: 0 0 5px rgba(255, 200, 100, 0.5); }
+    30% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
+    40% { background: rgba(255, 200, 100, 0.7); box-shadow: 0 0 7px rgba(255, 200, 100, 0.5); }
+    45% { background: rgba(255, 200, 100, 0.4); box-shadow: 0 0 3px rgba(255, 200, 100, 0.5); }
+    55% { background: rgba(255, 200, 100, 0.8); box-shadow: 0 0 8px rgba(255, 200, 100, 0.5); }
+    60% { background: rgba(255, 200, 100, 0.5); box-shadow: 0 0 4px rgba(255, 200, 100, 0.5); }
+    70% { background: rgba(255, 200, 100, 0.9); box-shadow: 0 0 9px rgba(255, 200, 100, 0.5); }
+    85% { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+    100% { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+}
+
+.loader-text {
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.loader-text span {
+    animation: textPulse 1.5s ease-in-out infinite;
+}
+
+.loader-text span:nth-child(2) { animation-delay: 0.1s; }
+.loader-text span:nth-child(3) { animation-delay: 0.2s; }
+.loader-text span:nth-child(4) { animation-delay: 0.3s; }
+.loader-text span:nth-child(5) { animation-delay: 0.4s; }
+.loader-text span:nth-child(6) { animation-delay: 0.5s; }
+.loader-text span:nth-child(7) { animation-delay: 0.6s; }
+.loader-text span:nth-child(8) { animation-delay: 0.7s; }
+.loader-text span:nth-child(9) { animation-delay: 0.8s; }
+.loader-text span:nth-child(10) { animation-delay: 0.9s; }
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ============================================
+   Voltage Meter for Quote Form
+   ============================================ */
+.voltage-meter {
+    position: sticky;
+    top: 90px;
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border-radius: var(--radius-lg);
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    z-index: 100;
+}
+
+.meter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.meter-title {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.meter-title svg {
+    color: var(--secondary);
+}
+
+.meter-percentage {
+    color: var(--secondary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.meter-gauge {
+    position: relative;
+    height: 30px;
+    background: #0a0a12;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.meter-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,
+        #ff4444 0%,
+        #ff8800 25%,
+        #ffcc00 50%,
+        #88ff00 75%,
+        #00ff88 100%
+    );
+    border-radius: 15px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.meter-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 15px 15px 0 0;
+}
+
+.meter-sparks {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.meter-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 5px;
+}
+
+.meter-marker {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.meter-status {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+}
+
+.status-text.charged {
+    color: #00ff88;
+    font-weight: 600;
+}
+
+/* Meter animations */
+.meter-fill.charging {
+    animation: meterPulse 1s ease-in-out infinite;
+}
+
+@keyframes meterPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.3); }
+}
+
+.meter-fill.full {
+    animation: meterComplete 0.5s ease;
+}
+
+@keyframes meterComplete {
+    0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(0, 255, 136, 1), 0 0 100px rgba(0, 255, 136, 0.5); }
+    100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.7); }
+}
+
+/* Mini sparks on the meter */
+.mini-spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--secondary);
+    animation: miniSparkFloat 0.8s ease-out forwards;
+}
+
+@keyframes miniSparkFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx, 10px), var(--ty, -20px)) scale(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .voltage-meter {
+        position: relative;
+        top: 0;
+    }
+}
