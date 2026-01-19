@@ -27,10 +27,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User sees lightbulb animation on first visit to site
   3. User navigating between pages does not see loading animation repeat
   4. Returning visitor in same session sees no loading animation
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md - Remove spark cursor effect (preserve light switch burst)
+- [ ] 01-02-PLAN.md - Session-based loading animation with cross-tab sync
 
 ### Phase 2: Design System
 **Goal**: Site presents a cohesive black/white/orange minimalist aesthetic
@@ -72,9 +73,10 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. UX Cleanup | 0/TBD | Not started | - |
+| 1. UX Cleanup | 0/2 | Planned | - |
 | 2. Design System | 0/TBD | Not started | - |
 | 3. Content Update | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2025-01-19*
+*Phase 1 planned: 2025-01-19*
