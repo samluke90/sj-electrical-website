@@ -8,7 +8,6 @@ initPageLoader();
 
 document.addEventListener('DOMContentLoaded', function() {
     initLightSwitch();
-    initSparkCursor();
     initVoltageMeter();
 });
 
@@ -192,88 +191,6 @@ function playClickSound() {
     }
 }
 
-/* ============================================
-   Spark Cursor Effect
-   ============================================ */
-function initSparkCursor() {
-    let lastSparkTime = 0;
-    const sparkInterval = 50; // Minimum ms between sparks
-    let mouseX = 0;
-    let mouseY = 0;
-    let isMoving = false;
-    let moveTimeout;
-
-    // Track mouse position
-    document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        isMoving = true;
-
-        // Clear previous timeout
-        clearTimeout(moveTimeout);
-
-        // Set moving to false after mouse stops
-        moveTimeout = setTimeout(() => {
-            isMoving = false;
-        }, 100);
-
-        // Throttle spark creation
-        const now = Date.now();
-        if (now - lastSparkTime > sparkInterval && isMoving) {
-            // Random chance to create spark (not every movement)
-            if (Math.random() > 0.7) {
-                createSpark(mouseX, mouseY);
-                lastSparkTime = now;
-            }
-        }
-    });
-
-    // Create spark burst on click
-    document.addEventListener('click', function(e) {
-        createSparkBurst(e.clientX, e.clientY);
-        createElectricArc(e.clientX, e.clientY);
-    });
-}
-
-// Create a single spark with multiple particles
-function createSpark(x, y) {
-    const spark = document.createElement('div');
-    spark.className = 'spark';
-    spark.style.left = x + 'px';
-    spark.style.top = y + 'px';
-
-    // Create 3-5 particles per spark
-    const particleCount = Math.floor(Math.random() * 3) + 3;
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'spark-particle';
-
-        // Randomize particle properties
-        const size = Math.random() * 3 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-
-        // Random direction
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 20 + 10;
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-
-        particle.style.setProperty('--tx', tx + 'px');
-        particle.style.setProperty('--ty', ty + 'px');
-        particle.style.animation = `sparkMoveRandom 0.4s ease-out forwards`;
-
-        spark.appendChild(particle);
-    }
-
-    document.body.appendChild(spark);
-
-    // Remove after animation
-    setTimeout(() => {
-        spark.remove();
-    }, 600);
-}
-
 // Create a larger spark burst (for clicks and switch)
 function createSparkBurst(x, y) {
     const burst = document.createElement('div');
@@ -314,48 +231,6 @@ function createSparkBurst(x, y) {
         burst.remove();
     }, 500);
 }
-
-// Create electric arc effect on click
-function createElectricArc(x, y) {
-    const arc = document.createElement('div');
-    arc.className = 'electric-arc';
-    arc.style.left = x + 'px';
-    arc.style.top = y + 'px';
-
-    // Create 6 arc lines radiating outward
-    for (let i = 0; i < 6; i++) {
-        const line = document.createElement('div');
-        line.className = 'arc-line';
-        line.style.transform = `rotate(${i * 60}deg)`;
-
-        // Add some randomness to line length
-        line.style.height = (Math.random() * 15 + 20) + 'px';
-
-        arc.appendChild(line);
-    }
-
-    document.body.appendChild(arc);
-
-    setTimeout(() => {
-        arc.remove();
-    }, 300);
-}
-
-// Add custom CSS for random spark movement
-const sparkStyle = document.createElement('style');
-sparkStyle.textContent = `
-    @keyframes sparkMoveRandom {
-        0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: translate(var(--tx, 10px), var(--ty, -10px)) scale(0.5);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(sparkStyle);
 
 /* ============================================
    Voltage Meter for Quote Form
