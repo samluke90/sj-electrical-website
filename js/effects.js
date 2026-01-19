@@ -1,7 +1,75 @@
+// Session detection - runs immediately before anything else
+(function() {
+    // sessionStorage is tab-specific AND clears on browser close
+    // If no marker exists, this is a fresh browser session
+    if (!sessionStorage.getItem('sj_session_active')) {
+        // Fresh browser session - clear any previous animation flag
+        localStorage.removeItem('sj_animation_shown');
+        sessionStorage.setItem('sj_session_active', 'true');
+    }
+})();
+
 /* ============================================
    SJ Electrical - Fun Effects
    Light Switch, Spark Cursor, Loading Animation & Voltage Meter
    ============================================ */
+
+// Session-aware helper functions
+function shouldShowAnimation() {
+    // Skip if already shown this session (any tab)
+    if (localStorage.getItem('sj_animation_shown') === 'true') {
+        return false;
+    }
+    // Skip if page already loaded (cached/fast)
+    if (document.readyState === 'complete') {
+        return false;
+    }
+    return true;
+}
+
+function markAnimationShown() {
+    localStorage.setItem('sj_animation_shown', 'true');
+
+    // Notify other tabs via BroadcastChannel (with fallback)
+    try {
+        if (window.BroadcastChannel) {
+            const channel = new BroadcastChannel('sj_electrical_session');
+            channel.postMessage({ type: 'animation_complete' });
+            channel.close();
+        }
+    } catch (e) {
+        // BroadcastChannel not available (Safari private mode)
+    }
+}
+
+function listenForOtherTabs() {
+    try {
+        if (window.BroadcastChannel) {
+            const channel = new BroadcastChannel('sj_electrical_session');
+            channel.onmessage = (event) => {
+                if (event.data.type === 'animation_complete') {
+                    // Another tab showed animation - hide ours immediately
+                    const loader = document.getElementById('pageLoader');
+                    if (loader) {
+                        loader.classList.add('loaded');
+                        setTimeout(() => loader.remove(), 300);
+                    }
+                }
+            };
+        }
+    } catch (e) {
+        // Fallback: listen for localStorage changes
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'sj_animation_shown' && event.newValue === 'true') {
+                const loader = document.getElementById('pageLoader');
+                if (loader) {
+                    loader.classList.add('loaded');
+                    setTimeout(() => loader.remove(), 300);
+                }
+            }
+        });
+    }
+}
 
 // Initialize loading animation immediately (before DOMContentLoaded)
 initPageLoader();
@@ -15,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
    Lightbulb Page Loading Animation
    ============================================ */
 function initPageLoader() {
-    // Don't show loader if page is already cached/fast
-    if (document.readyState === 'complete') return;
+    // Check session - skip if animation already shown this session
+    if (!shouldShowAnimation()) return;
 
     // Create the loader HTML
     const loader = document.createElement('div');
@@ -49,60 +117,37 @@ function initPageLoader() {
         });
     }
 
-    // Start the flicker animation
+    // Listen for other tabs showing animation
+    listenForOtherTabs();
+
+    // Start the flicker animation (faster timing)
     setTimeout(() => {
         const bulb = document.getElementById('lightbulb');
         if (bulb) {
             bulb.classList.add('flickering');
 
-            // After flicker animation, turn on the bulb
+            // After flicker animation (600ms), turn on the bulb
             setTimeout(() => {
                 bulb.classList.remove('flickering');
                 bulb.classList.add('on');
 
-                // Play a subtle power-on sound
-                playPowerOnSound();
-
-                // Hide the loader
+                // Hide the loader after 200ms "on" state
                 setTimeout(() => {
                     const pageLoader = document.getElementById('pageLoader');
                     if (pageLoader) {
                         pageLoader.classList.add('loaded');
+                        // Mark animation as shown for this session
+                        markAnimationShown();
 
-                        // Remove from DOM after transition
+                        // Remove from DOM after 300ms fade transition
                         setTimeout(() => {
                             pageLoader.remove();
-                        }, 500);
+                        }, 300);
                     }
-                }, 300);
-            }, 1500);
+                }, 200);
+            }, 600);
         }
     }, 100);
-}
-
-// Power on sound effect
-function playPowerOnSound() {
-    try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        // Create a "power on" hum sound
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        oscillator.frequency.setValueAtTime(120, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(60, audioContext.currentTime + 0.3);
-
-        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.3);
-    } catch (e) {
-        // Audio not supported
-    }
 }
 
 /* ============================================
