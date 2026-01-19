@@ -1758,7 +1758,7 @@ body.theme-transitioning {
     align-items: center;
     justify-content: center;
     z-index: 999999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .page-loader.loaded {
@@ -1886,13 +1886,13 @@ body.theme-transitioning {
 
 /* Lightbulb states */
 .lightbulb.flickering .bulb-glow {
-    animation: bulbFlicker 1.5s ease-in-out;
+    animation: bulbFlicker 0.6s ease-in-out;
 }
 
 .lightbulb.flickering .filament-wire,
 .lightbulb.flickering .filament-wire::before,
 .lightbulb.flickering .filament-wire::after {
-    animation: filamentFlicker 1.5s ease-in-out;
+    animation: filamentFlicker 0.6s ease-in-out;
 }
 
 .lightbulb.on .bulb-glow {
@@ -1917,33 +1917,18 @@ body.theme-transitioning {
 
 @keyframes bulbFlicker {
     0% { opacity: 0; }
-    10% { opacity: 0.3; }
-    15% { opacity: 0; }
-    25% { opacity: 0.5; }
-    30% { opacity: 0.1; }
-    40% { opacity: 0.7; }
-    45% { opacity: 0.2; }
-    55% { opacity: 0.8; }
-    60% { opacity: 0.4; }
-    70% { opacity: 0.9; }
-    75% { opacity: 0.5; }
-    85% { opacity: 1; }
-    90% { opacity: 0.7; }
+    20% { opacity: 0.5; }
+    40% { opacity: 0.2; }
+    60% { opacity: 0.8; }
+    80% { opacity: 0.4; }
     100% { opacity: 1; width: 100px; height: 100px; filter: blur(30px); }
 }
 
 @keyframes filamentFlicker {
     0% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
-    10% { background: rgba(255, 200, 100, 0.5); box-shadow: 0 0 3px rgba(255, 200, 100, 0.5); }
-    15% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
-    25% { background: rgba(255, 200, 100, 0.6); box-shadow: 0 0 5px rgba(255, 200, 100, 0.5); }
-    30% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
-    40% { background: rgba(255, 200, 100, 0.7); box-shadow: 0 0 7px rgba(255, 200, 100, 0.5); }
-    45% { background: rgba(255, 200, 100, 0.4); box-shadow: 0 0 3px rgba(255, 200, 100, 0.5); }
-    55% { background: rgba(255, 200, 100, 0.8); box-shadow: 0 0 8px rgba(255, 200, 100, 0.5); }
-    60% { background: rgba(255, 200, 100, 0.5); box-shadow: 0 0 4px rgba(255, 200, 100, 0.5); }
-    70% { background: rgba(255, 200, 100, 0.9); box-shadow: 0 0 9px rgba(255, 200, 100, 0.5); }
-    85% { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+    25% { background: rgba(255, 200, 100, 0.5); box-shadow: 0 0 5px rgba(255, 200, 100, 0.5); }
+    50% { background: rgba(255, 255, 255, 0.3); box-shadow: none; }
+    75% { background: rgba(255, 200, 100, 0.7); box-shadow: 0 0 7px rgba(255, 200, 100, 0.5); }
     100% { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
 }
 
