@@ -1,0 +1,80 @@
+# Roadmap: SJ Electrical Contractors Website
+
+## Overview
+
+Transform the existing SJ Electrical website from its current state into a professional, minimalist black/white/orange design with accurate business information. The work naturally divides into three phases: cleaning up interaction effects, establishing the new design system, and updating all content with real business details.
+
+## Phases
+
+**Phase Numbering:**
+- Integer phases (1, 2, 3): Planned milestone work
+- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+
+Decimal phases appear between their surrounding integers in numeric order.
+
+- [ ] **Phase 1: UX Cleanup** - Remove spark cursor, optimize loading animation
+- [ ] **Phase 2: Design System** - Implement black/white/orange minimalist aesthetic
+- [ ] **Phase 3: Content Update** - Replace all placeholder content with real business info
+
+## Phase Details
+
+### Phase 1: UX Cleanup
+**Goal**: Site interactions feel professional and non-intrusive
+**Depends on**: Nothing (first phase)
+**Requirements**: UXFX-01, UXFX-02, UXFX-03
+**Success Criteria** (what must be TRUE):
+  1. User sees no spark/particle effects following their cursor
+  2. User sees lightbulb animation on first visit to site
+  3. User navigating between pages does not see loading animation repeat
+  4. Returning visitor in same session sees no loading animation
+**Plans**: TBD
+
+Plans:
+- [ ] 01-01: TBD
+
+### Phase 2: Design System
+**Goal**: Site presents a cohesive black/white/orange minimalist aesthetic
+**Depends on**: Phase 1
+**Requirements**: DSGN-01, DSGN-02, DSGN-03, DSGN-04, DSGN-05, DSGN-06
+**Success Criteria** (what must be TRUE):
+  1. Site loads with black background by default
+  2. All primary text is white and readable against black
+  3. CTAs and highlights use orange accent color consistently
+  4. Typography appears modern and geometric across all pages
+  5. Layout has generous whitespace, no visual clutter
+  6. Light mode toggle produces a coherent light theme (not broken/inverted)
+**Plans**: TBD
+
+Plans:
+- [ ] 02-01: TBD
+
+### Phase 3: Content Update
+**Goal**: All content reflects accurate SJ Electrical business information
+**Depends on**: Phase 2
+**Requirements**: CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06, CONT-07
+**Success Criteria** (what must be TRUE):
+  1. Business name "SJ Electrical Contractors Limited" appears in header/footer
+  2. Contact page shows correct address, email, and phone number
+  3. Services page lists all offered services (rewiring, consumer units, EICR, etc.)
+  4. NICEIC Approved Contractor certification is visibly displayed
+  5. Service area "London and surrounding areas" is stated
+  6. Testimonials section exists with placeholder structure
+  7. Social media links section exists with placeholder structure
+**Plans**: TBD
+
+Plans:
+- [ ] 03-01: TBD
+
+## Progress
+
+**Execution Order:**
+Phases execute in numeric order: 1 -> 2 -> 3
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| 1. UX Cleanup | 0/TBD | Not started | - |
+| 2. Design System | 0/TBD | Not started | - |
+| 3. Content Update | 0/TBD | Not started | - |
+
+---
+*Roadmap created: 2025-01-19*
