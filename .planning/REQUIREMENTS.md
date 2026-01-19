@@ -28,9 +28,9 @@ Requirements for this update cycle.
 
 ### UX/Effects
 
-- [ ] **UXFX-01**: Remove spark cursor effect entirely
-- [ ] **UXFX-02**: Show lightbulb animation only on first site visit (session-based)
-- [ ] **UXFX-03**: Skip loading animation on internal page navigation
+- [x] **UXFX-01**: Remove spark cursor effect entirely
+- [x] **UXFX-02**: Show lightbulb animation only on first site visit (session-based)
+- [x] **UXFX-03**: Skip loading animation on internal page navigation
 
 ## v2 Requirements
 
@@ -73,9 +73,9 @@ Deferred to future updates.
 | CONT-05 | Phase 3 | Pending |
 | CONT-06 | Phase 3 | Pending |
 | CONT-07 | Phase 3 | Pending |
-| UXFX-01 | Phase 1 | Pending |
-| UXFX-02 | Phase 1 | Pending |
-| UXFX-03 | Phase 1 | Pending |
+| UXFX-01 | Phase 1 | Complete |
+| UXFX-02 | Phase 1 | Complete |
+| UXFX-03 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 16 total
@@ -84,4 +84,4 @@ Deferred to future updates.
 
 ---
 *Requirements defined: 2025-01-19*
-*Last updated: 2025-01-19 - Phase mappings added*
+*Last updated: 2025-01-19 - Phase 1 requirements complete*
