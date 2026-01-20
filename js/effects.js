@@ -169,17 +169,19 @@ function initLightSwitch() {
 
     const switchToggle = lightSwitch.querySelector('.switch-toggle');
 
-    // Check for saved theme preference or default to light
+    // Check for saved theme preference - dark is now default
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        // Switch is "on" (up) for light mode
+    } else {
+        // Dark mode is default - switch is "off" (down position)
         switchToggle.classList.add('off');
     }
 
     // Click handler
     lightSwitch.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
 
         // Play click sound
         playClickSound();
@@ -192,12 +194,15 @@ function initLightSwitch() {
 
         // Apply theme after a brief delay for the flicker effect
         setTimeout(() => {
-            if (newTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
+            if (isLightMode) {
+                // Switch to dark (default)
                 document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Switch to light
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
             }
-            localStorage.setItem('theme', newTheme);
         }, 150);
 
         // Remove flicker class
