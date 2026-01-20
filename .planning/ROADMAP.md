@@ -44,10 +44,11 @@ Plans:
   4. Typography appears modern and geometric across all pages
   5. Layout has generous whitespace, no visual clutter
   6. Light mode toggle produces a coherent light theme (not broken/inverted)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md - Core design system (CSS tokens, typography, theme inversion)
+- [ ] 02-02-PLAN.md - Theme flash prevention and spacing refinement
 
 ### Phase 3: Content Update
 **Goal**: All content reflects accurate SJ Electrical business information
@@ -74,9 +75,10 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. UX Cleanup | 2/2 | Complete | 2025-01-19 |
-| 2. Design System | 0/TBD | Not started | - |
+| 2. Design System | 0/2 | Planned | - |
 | 3. Content Update | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2025-01-19*
 *Phase 1 planned: 2025-01-19*
+*Phase 2 planned: 2026-01-20*
