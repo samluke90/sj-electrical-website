@@ -4,21 +4,67 @@
 
 /* CSS Variables */
 :root {
-    --primary: #0066CC;
-    --primary-dark: #004d99;
+    /* Backgrounds - Dark mode default */
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #141414;
+    --color-bg-elevated: #1f1f1f;
+
+    /* Text */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+    --color-text-muted: rgba(255, 255, 255, 0.5);
+
+    /* Accent (Orange) */
+    --color-accent: #FF8C00;
+    --color-accent-hover: #FFa333;
+    --color-accent-text: #0a0a0a;
+
+    /* Semantic */
+    --color-success: #00C853;
+    --color-error: #FF5252;
+
+    /* Borders & Dividers */
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border-hover: rgba(255, 255, 255, 0.2);
+
+    /* Shadows */
+    --shadow-sm: 0 0 10px rgba(255, 140, 0, 0.1);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+    /* Legacy mappings for existing CSS (prevents breakage) */
+    --primary: var(--color-accent);
+    --primary-dark: var(--color-accent-hover);
     --secondary: #FFD700;
     --secondary-dark: #e6c200;
-    --dark: #2D2D2D;
-    --dark-light: #4a4a4a;
-    --light: #F8F9FA;
-    --white: #FFFFFF;
-    --accent: #28A745;
-    --danger: #DC3545;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --dark: var(--color-text-primary);
+    --dark-light: var(--color-text-secondary);
+    --light: var(--color-bg-secondary);
+    --white: var(--color-bg-primary);
+    --accent: var(--color-success);
+    --danger: var(--color-error);
+    --shadow: var(--shadow-md);
+
+    /* Radius and transition (unchanged) */
     --radius: 8px;
     --radius-lg: 16px;
     --transition: all 0.3s ease;
+
+    /* Typography */
+    --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
 }
 
 /* Reset & Base */
@@ -33,18 +79,21 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-family);
     font-size: 16px;
     line-height: 1.6;
-    color: var(--dark);
-    background-color: var(--white);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
     line-height: 1.2;
     margin-bottom: 1rem;
+    color: var(--color-text-primary);
 }
 
 h1 { font-size: 2.5rem; }
@@ -95,15 +144,15 @@ img {
 }
 
 .btn-primary {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 .btn-primary:hover {
-    background: var(--primary-dark);
-    color: var(--white);
+    background: var(--color-accent-hover);
+    color: var(--color-accent-text);
     transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -151,9 +200,10 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    background: var(--white);
-    box-shadow: var(--shadow);
+    background: var(--color-bg-primary);
+    box-shadow: var(--shadow-md);
     z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .header-container {
@@ -295,8 +345,8 @@ img {
    ============================================ */
 .hero {
     padding: 140px 0 80px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: var(--white);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
     position: relative;
     overflow: hidden;
 }
@@ -345,7 +395,7 @@ img {
 }
 
 .hero h1 span {
-    color: var(--secondary);
+    color: var(--color-accent);
 }
 
 .hero-text {
@@ -457,13 +507,13 @@ img {
 .service-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: var(--color-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    color: var(--white);
+    color: var(--color-accent-text);
     font-size: 1.8rem;
 }
 
@@ -1578,65 +1628,82 @@ select.form-control {
 .hidden { display: none; }
 
 /* ============================================
-   Dark Mode
+   Light Mode (toggled)
    ============================================ */
-[data-theme="dark"] {
-    --primary: #4d9fff;
-    --primary-dark: #3385ff;
-    --dark: #E8E8E8;
-    --dark-light: #B0B0B0;
-    --light: #1a1a2e;
-    --white: #0f0f1a;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+[data-theme="light"] {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f8f8;
+    --color-bg-elevated: #ffffff;
+
+    --color-text-primary: #0a0a0a;
+    --color-text-secondary: rgba(0, 0, 0, 0.7);
+    --color-text-muted: rgba(0, 0, 0, 0.5);
+
+    --color-accent: #E67E00;
+    --color-accent-hover: #CC7000;
+
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-border-hover: rgba(0, 0, 0, 0.2);
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    /* Legacy mappings */
+    --primary: var(--color-accent);
+    --primary-dark: var(--color-accent-hover);
+    --dark: var(--color-text-primary);
+    --dark-light: var(--color-text-secondary);
+    --light: var(--color-bg-secondary);
+    --white: var(--color-bg-primary);
 }
 
-[data-theme="dark"] body {
-    background-color: #0f0f1a;
+[data-theme="light"] body {
+    background-color: #ffffff;
 }
 
-[data-theme="dark"] .header {
-    background: #0f0f1a;
-    border-bottom: 1px solid #2a2a3e;
+[data-theme="light"] .header {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-[data-theme="dark"] .mobile-nav {
-    background: #0f0f1a;
+[data-theme="light"] .mobile-nav {
+    background: #ffffff;
 }
 
-[data-theme="dark"] .service-card,
-[data-theme="dark"] .testimonial-card,
-[data-theme="dark"] .quote-form-card,
-[data-theme="dark"] .contact-form-section,
-[data-theme="dark"] .credentials-card,
-[data-theme="dark"] .hero-card,
-[data-theme="dark"] .upload-preview,
-[data-theme="dark"] .about-badge-card,
-[data-theme="dark"] .cert-card {
-    background: #1a1a2e;
+[data-theme="light"] .service-card,
+[data-theme="light"] .testimonial-card,
+[data-theme="light"] .quote-form-card,
+[data-theme="light"] .contact-form-section,
+[data-theme="light"] .credentials-card,
+[data-theme="light"] .hero-card,
+[data-theme="light"] .upload-preview,
+[data-theme="light"] .about-badge-card,
+[data-theme="light"] .cert-card {
+    background: #ffffff;
 }
 
-[data-theme="dark"] .form-control {
-    background: #1a1a2e;
-    border-color: #2a2a3e;
-    color: #E8E8E8;
+[data-theme="light"] .form-control {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0a0a0a;
 }
 
-[data-theme="dark"] .form-control:focus {
-    border-color: var(--primary);
+[data-theme="light"] .form-control:focus {
+    border-color: var(--color-accent);
 }
 
-[data-theme="dark"] .upload-zone {
-    background: rgba(77, 159, 255, 0.05);
-    border-color: var(--primary);
+[data-theme="light"] .upload-zone {
+    background: rgba(230, 126, 0, 0.05);
+    border-color: var(--color-accent);
 }
 
-[data-theme="dark"] .footer {
-    background: #0a0a12;
+[data-theme="light"] .footer {
+    background: #1a1a1a;
 }
 
-[data-theme="dark"] .mobile-menu-btn span {
-    background: #E8E8E8;
+[data-theme="light"] .mobile-menu-btn span {
+    background: #0a0a0a;
 }
 
 /* Dark mode transition for flicker effect */
@@ -1672,36 +1739,36 @@ body.theme-transitioning {
 .switch-plate {
     width: 50px;
     height: 80px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    border-radius: 8px;
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 2px 3px rgba(255, 255, 255, 0.8),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    border: 2px solid #d0d0d0;
-}
-
-[data-theme="dark"] .switch-plate {
     background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
-    border-color: #3a3a4e;
+    border-radius: 8px;
     box-shadow:
         0 4px 15px rgba(0, 0, 0, 0.5),
         inset 0 2px 3px rgba(255, 255, 255, 0.1),
         inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 2px solid #3a3a4e;
+}
+
+[data-theme="light"] .switch-plate {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border-color: #d0d0d0;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .switch-toggle {
     width: 24px;
     height: 40px;
-    background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 50%, #f5f5f5 100%);
+    background: linear-gradient(180deg, #4a4a5e 0%, #3a3a4e 50%, #4a4a5e 100%);
     border-radius: 4px;
     box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.3),
-        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
     transition: all 0.15s ease;
     transform: rotateX(0deg);
     transform-origin: center bottom;
@@ -1714,8 +1781,8 @@ body.theme-transitioning {
         inset 0 -1px 2px rgba(255, 255, 255, 0.8);
 }
 
-[data-theme="dark"] .switch-toggle {
-    background: linear-gradient(180deg, #4a4a5e 0%, #3a3a4e 50%, #4a4a5e 100%);
+[data-theme="light"] .switch-toggle {
+    background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 50%, #f5f5f5 100%);
 }
 
 .light-switch:hover .switch-plate {
