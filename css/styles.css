@@ -465,14 +465,14 @@ img {
    Services Section
    ============================================ */
 .services {
-    padding: 80px 0;
-    background: var(--light);
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-secondary);
 }
 
 .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto var(--space-2xl);
 }
 
 .section-header h2 {
@@ -493,7 +493,7 @@ img {
 .service-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: 30px;
+    padding: var(--space-xl);
     text-align: center;
     transition: var(--transition);
     box-shadow: var(--shadow);
@@ -537,7 +537,7 @@ img {
    Why Choose Us Section
    ============================================ */
 .why-us {
-    padding: 80px 0;
+    padding: var(--space-3xl) 0;
 }
 
 .why-us-grid {
@@ -641,8 +641,25 @@ img {
    Photo Quote CTA Section
    ============================================ */
 .photo-quote-cta {
-    padding: 80px 0;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    padding: var(--space-3xl) 0;
+    background: var(--color-accent);
+}
+
+/* Photo quote CTA section text colors */
+.photo-quote-cta .cta-content h2,
+.photo-quote-cta .cta-content p,
+.photo-quote-cta .cta-step p {
+    color: var(--color-accent-text);
+}
+
+.photo-quote-cta .step-number {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+.photo-quote-cta .section-header h2,
+.photo-quote-cta .section-header p {
+    color: var(--color-accent-text);
 }
 
 .cta-container {
@@ -729,8 +746,8 @@ img {
    Testimonials Section
    ============================================ */
 .testimonials {
-    padding: 80px 0;
-    background: var(--light);
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-secondary);
 }
 
 .testimonials-grid {
@@ -742,7 +759,7 @@ img {
 .testimonial-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: 30px;
+    padding: var(--space-xl);
     box-shadow: var(--shadow);
 }
 
@@ -1215,7 +1232,7 @@ select.form-control {
    About Page
    ============================================ */
 .about-intro {
-    padding: 60px 0;
+    padding: var(--space-3xl) 0;
 }
 
 .about-grid {
@@ -1275,8 +1292,8 @@ select.form-control {
 }
 
 .certifications {
-    padding: 60px 0;
-    background: var(--light);
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-secondary);
 }
 
 .cert-grid {
@@ -1318,7 +1335,7 @@ select.form-control {
 }
 
 .service-areas {
-    padding: 60px 0;
+    padding: var(--space-3xl) 0;
 }
 
 .areas-grid {
@@ -1360,7 +1377,7 @@ select.form-control {
    Contact Page
    ============================================ */
 .contact-section {
-    padding: 60px 0;
+    padding: var(--space-3xl) 0;
 }
 
 .contact-grid {
