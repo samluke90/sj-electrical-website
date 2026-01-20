@@ -62,10 +62,11 @@ Plans:
   5. Service area "London and surrounding areas" is stated
   6. Testimonials section exists with placeholder structure
   7. Social media links section exists with placeholder structure
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md - Update contact details, service area, NICEIC, and testimonial placeholders
+- [ ] 03-02-PLAN.md - Add social media placeholder links to all footers
 
 ## Progress
 
@@ -76,9 +77,10 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. UX Cleanup | 2/2 | Complete | 2025-01-19 |
 | 2. Design System | 2/2 | Complete | 2026-01-20 |
-| 3. Content Update | 0/TBD | Not started | - |
+| 3. Content Update | 0/2 | Planned | - |
 
 ---
 *Roadmap created: 2025-01-19*
 *Phase 1 planned: 2025-01-19*
 *Phase 2 planned: 2026-01-20*
+*Phase 3 planned: 2026-01-20*
