@@ -9,12 +9,12 @@ Requirements for this update cycle.
 
 ### Design
 
-- [ ] **DSGN-01**: Black background as default color scheme
-- [ ] **DSGN-02**: White text for primary content
-- [ ] **DSGN-03**: Orange accent color for highlights/CTAs
-- [ ] **DSGN-04**: Modern geometric sans-serif typography
-- [ ] **DSGN-05**: Minimalist layout with ample whitespace
-- [ ] **DSGN-06**: Update light mode to work with new design system
+- [x] **DSGN-01**: Black background as default color scheme
+- [x] **DSGN-02**: White text for primary content
+- [x] **DSGN-03**: Orange accent color for highlights/CTAs
+- [x] **DSGN-04**: Modern geometric sans-serif typography
+- [x] **DSGN-05**: Minimalist layout with ample whitespace
+- [x] **DSGN-06**: Update light mode to work with new design system
 
 ### Content
 
@@ -60,12 +60,12 @@ Deferred to future updates.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DSGN-01 | Phase 2 | Pending |
-| DSGN-02 | Phase 2 | Pending |
-| DSGN-03 | Phase 2 | Pending |
-| DSGN-04 | Phase 2 | Pending |
-| DSGN-05 | Phase 2 | Pending |
-| DSGN-06 | Phase 2 | Pending |
+| DSGN-01 | Phase 2 | Complete |
+| DSGN-02 | Phase 2 | Complete |
+| DSGN-03 | Phase 2 | Complete |
+| DSGN-04 | Phase 2 | Complete |
+| DSGN-05 | Phase 2 | Complete |
+| DSGN-06 | Phase 2 | Complete |
 | CONT-01 | Phase 3 | Pending |
 | CONT-02 | Phase 3 | Pending |
 | CONT-03 | Phase 3 | Pending |
@@ -84,4 +84,4 @@ Deferred to future updates.
 
 ---
 *Requirements defined: 2025-01-19*
-*Last updated: 2025-01-19 - Phase 1 requirements complete*
+*Last updated: 2026-01-20 - Phase 2 requirements complete*
