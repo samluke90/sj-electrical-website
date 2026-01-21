@@ -17,6 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
     /* ============================================
+       Error Display Functions
+       ============================================ */
+    const errorContainer = document.getElementById('form-errors');
+
+    function showError(message) {
+        errorContainer.textContent = message;
+        errorContainer.classList.add('visible');
+        errorContainer.setAttribute('tabindex', '-1');
+        errorContainer.focus();
+        // Scroll error into view
+        errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function clearErrors() {
+        errorContainer.textContent = '';
+        errorContainer.classList.remove('visible');
+    }
+
+    /* ============================================
        Drag and Drop Functionality
        ============================================ */
     uploadZone.addEventListener('click', function() {
@@ -52,19 +71,19 @@ document.addEventListener('DOMContentLoaded', function() {
         fileArray.forEach(file => {
             // Check if already at max files
             if (uploadedFiles.length >= MAX_FILES) {
-                alert(`Maximum ${MAX_FILES} photos allowed.`);
+                showError(`Maximum ${MAX_FILES} photos allowed.`);
                 return;
             }
 
             // Validate file type
             if (!file.type.match(/image\/(jpeg|jpg|png|gif|webp)/)) {
-                alert(`${file.name} is not a valid image file.`);
+                showError(`${file.name} is not a valid image file.`);
                 return;
             }
 
             // Validate file size
             if (file.size > MAX_FILE_SIZE) {
-                alert(`${file.name} is too large. Maximum file size is 5MB.`);
+                showError(`${file.name} is too large. Maximum file size is 5MB.`);
                 return;
             }
 
@@ -128,13 +147,27 @@ document.addEventListener('DOMContentLoaded', function() {
     quoteForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // Disable submit button and show loading state
-        submitBtn.disabled = true;
+        // Clear previous errors
+        clearErrors();
+
+        // Client-side validation
+        if (!quoteForm.checkValidity()) {
+            quoteForm.reportValidity();
+            return;
+        }
+
+        // Set loading state
         const originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.setAttribute('aria-busy', 'true');
 
         try {
             const formData = new FormData(quoteForm);
+
+            // Set reply-to from email field
+            const email = quoteForm.querySelector('#email').value;
+            formData.set('_replyto', email);
 
             // Remove existing photos and re-add from our array
             formData.delete('photos');
@@ -142,31 +175,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append(`photo_${index + 1}`, file);
             });
 
-            // Submit to Web3Forms
-            const response = await fetch('https://api.web3forms.com/submit', {
+            // Submit to Formspree with JSON response
+            const response = await fetch(quoteForm.action, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
 
-            const result = await response.json();
-
-            if (result.success) {
-                // Show success message
+            if (response.ok) {
+                // Success - show confirmation
                 quoteForm.style.display = 'none';
                 formSuccess.classList.add('show');
-
-                // Scroll to success message
                 formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                throw new Error(result.message || 'Form submission failed');
+                // Handle Formspree error response
+                const data = await response.json();
+                if (data.errors) {
+                    showError(data.errors.map(err => err.message).join('. '));
+                } else {
+                    showError('Something went wrong. Please try again or call us directly on 07875 210 678.');
+                }
+                resetButton();
             }
         } catch (error) {
             console.error('Form submission error:', error);
-            alert('Sorry, there was an error submitting your quote request. Please try again or call us directly.');
+            showError('Network error. Please check your connection and try again, or call us directly on 07875 210 678.');
+            resetButton();
+        }
 
-            // Re-enable submit button
+        function resetButton() {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnText;
+            submitBtn.setAttribute('aria-busy', 'false');
         }
     });
 
@@ -189,11 +231,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validateInput(input) {
         if (!input.value.trim()) {
-            input.style.borderColor = '#DC3545';
             input.classList.add('error');
+            input.setAttribute('aria-invalid', 'true');
         } else {
-            input.style.borderColor = '';
             input.classList.remove('error');
+            input.removeAttribute('aria-invalid');
         }
     }
 
