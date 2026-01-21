@@ -1785,6 +1785,18 @@ select.form-control option {
     background: #1a1a1a;
 }
 
+/* CTA button on orange section - dark fill for contrast in light mode too */
+[data-theme="light"] .photo-quote-cta .btn-primary {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+}
+
+[data-theme="light"] .photo-quote-cta .btn-primary:hover {
+    background: #2a2a2a;
+    border-color: #2a2a2a;
+}
+
 [data-theme="light"] .mobile-menu-btn span {
     background: #0a0a0a;
 }
