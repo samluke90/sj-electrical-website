@@ -15,6 +15,11 @@ This milestone completes two finishing touches for the v1.0 website: fixing dark
 
 **Dependencies:** None (builds on v1.0 CSS)
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 04-01-PLAN.md - Fix dark mode contrast for form inputs, footer, and CTA buttons
+
 **Requirements:**
 - STYLE-01: Form inputs have dark background with light text in dark mode
 - STYLE-02: Footer has subtle dark background (#111) with light text in dark mode
@@ -49,7 +54,7 @@ This milestone completes two finishing touches for the v1.0 website: fixing dark
 
 | Phase | Status | Plans | Started | Completed |
 |-------|--------|-------|---------|-----------|
-| 4 - Styling Fixes | Pending | 0/? | - | - |
+| 4 - Styling Fixes | Planned | 0/1 | - | - |
 | 5 - Form Functionality | Pending | 0/? | - | - |
 
 ---
