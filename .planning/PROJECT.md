@@ -35,7 +35,12 @@ Potential customers can quickly understand what services are offered, trust the 
 
 ### Active
 
-(No active requirements — use `/gsd:new-milestone` to define v1.1)
+<!-- v1.1: Color fixes + Form functionality -->
+
+- [ ] Form inputs use dark background with light text
+- [ ] Footer uses subtle dark background (#111 or similar) with light text
+- [ ] Buttons on orange backgrounds use dark fill with white text
+- [ ] Quote form sends email via Formspree to info@sjec.uk
 
 ### Out of Scope
 
@@ -98,4 +103,4 @@ Potential customers can quickly understand what services are offered, trust the 
 | BroadcastChannel + storage fallback | Cross-tab sync works in all browsers including Safari private | ✓ Good |
 
 ---
-*Last updated: 2026-01-21 after v1.0 milestone*
+*Last updated: 2026-01-21 after starting v1.1 milestone*
