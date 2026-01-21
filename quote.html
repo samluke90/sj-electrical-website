@@ -75,6 +75,9 @@
             </div>
 
             <div class="quote-form-card">
+                <!-- Error Container (accessible) -->
+                <div id="form-errors" class="form-error-container" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
                 <!-- Success Message (hidden by default) -->
                 <div class="form-success" id="formSuccess">
                     <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -82,16 +85,18 @@
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
                     <h2>Quote Request Received!</h2>
-                    <p>Thank you for your enquiry. We've received your details and photos, and will be in touch with your personalised quote shortly.</p>
+                    <p>Thanks! We'll be in touch within 24 hours.</p>
                     <a href="index.html" class="btn btn-primary mt-20">Return to Home</a>
                 </div>
 
                 <!-- Quote Form -->
-                <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-                    <!-- Web3Forms Access Key - Replace with your own -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                    <input type="hidden" name="subject" value="New Quote Request - SJ Electrical Contractors">
-                    <input type="hidden" name="from_name" value="SJ Electrical Contractors Website">
+                <form id="quoteForm" action="https://formspree.io/f/xreedakb" method="POST" enctype="multipart/form-data">
+                    <!-- Formspree Configuration -->
+                    <input type="hidden" name="_subject" value="New Quote Request - SJ Electrical Contractors">
+                    <input type="hidden" name="_replyto" id="replyto">
+
+                    <!-- Honeypot spam protection (must be hidden and empty) -->
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
                     <!-- Your Details Section -->
                     <div class="form-section">
