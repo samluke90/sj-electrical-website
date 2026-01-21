@@ -1294,6 +1294,41 @@ select.form-control option {
     font-size: 1.1rem;
 }
 
+/* Form Error Container */
+.form-error-container {
+    display: none;
+    background: rgba(255, 82, 82, 0.1);
+    border: 2px solid var(--color-error);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    color: var(--color-error);
+    font-weight: 500;
+}
+
+.form-error-container.visible {
+    display: block;
+}
+
+/* Form field error state */
+.form-control.error {
+    border-color: var(--color-error);
+    background: rgba(255, 82, 82, 0.05);
+}
+
+.form-control.error:focus {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.2);
+}
+
+/* Inline field error message (for future enhancement) */
+.field-error {
+    display: block;
+    color: var(--color-error);
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+
 /* ============================================
    About Page
    ============================================ */
@@ -1774,6 +1809,14 @@ select.form-control option {
 
 [data-theme="light"] .form-control:focus {
     border-color: var(--color-accent);
+}
+
+[data-theme="light"] .form-error-container {
+    background: rgba(255, 82, 82, 0.08);
+}
+
+[data-theme="light"] .form-control.error {
+    background: rgba(255, 82, 82, 0.05);
 }
 
 [data-theme="light"] .upload-zone {
