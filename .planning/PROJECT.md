@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A professional website for SJ Electrical Contractors Limited, a London-based electrical services company. The site serves as the primary online presence to attract domestic and commercial customers seeking electrical work in London and surrounding areas.
+A professional website for SJ Electrical Contractors Limited, a London-based NICEIC Approved Contractor. Features a dark-first minimalist design (black/white/orange), session-based loading animation, and complete business information for domestic and commercial customers.
 
 ## Core Value
 
@@ -16,15 +16,26 @@ Potential customers can quickly understand what services are offered, trust the 
 - ✓ Quote request form — existing
 - ✓ Dark/light mode toggle — existing
 - ✓ Responsive design — existing
+- ✓ Black background as default color scheme — v1.0
+- ✓ White text for primary content — v1.0
+- ✓ Orange accent color for highlights/CTAs — v1.0
+- ✓ Modern geometric sans-serif typography (Outfit) — v1.0
+- ✓ Minimalist layout with ample whitespace — v1.0
+- ✓ Light mode works with design system — v1.0
+- ✓ Business name "SJ Electrical Contractors Limited" — v1.0
+- ✓ Contact details (address, email, phone) — v1.0
+- ✓ Service area "London and surrounding areas" — v1.0
+- ✓ NICEIC Approved Contractor certification displayed — v1.0
+- ✓ Complete services list — v1.0
+- ✓ Placeholder testimonials structure — v1.0
+- ✓ Placeholder social media links — v1.0
+- ✓ Spark cursor effect removed — v1.0
+- ✓ Session-based loading animation (first visit only) — v1.0
+- ✓ Skip animation on internal navigation — v1.0
 
 ### Active
 
-- [ ] Replace all placeholder content with real business information
-- [ ] Redesign to minimalist black/white/orange aesthetic
-- [ ] Remove spark cursor effect
-- [ ] Lightbulb animation only on first site visit (skip on internal navigation)
-- [ ] Update typography to modern geometric sans-serif
-- [ ] Ensure dark mode is default, light mode available via toggle
+(No active requirements — use `/gsd:new-milestone` to define v1.1)
 
 ### Out of Scope
 
@@ -32,15 +43,20 @@ Potential customers can quickly understand what services are offered, trust the 
 - Online booking system — simple contact form is sufficient for now
 - Blog/news section — not needed for v1
 - Customer portal/login — overkill for this business
+- Mobile app — PWA approach works well
+- Offline mode — real-time not a core requirement
 
 ## Context
 
-**Existing codebase:**
-- HTML/CSS/JS static site
-- Already has dark mode toggle (light switch style)
-- Has lightbulb loading animation
-- Has spark cursor effect (to be removed)
-- Quote form with voltage meter animation
+**Shipped v1.0** with 4,691 LOC (HTML/CSS/JS static site).
+
+**Tech stack:** Static HTML/CSS/JS, Outfit font, CSS custom properties for theming.
+
+**Current state:**
+- Dark-first design (#0a0a0a background, #FF8C00 orange accent)
+- Session-based loader with cross-tab sync
+- FOLT prevention via blocking script
+- Placeholder testimonials and social links ready for real content
 
 **Business details:**
 - Business name: SJ Electrical Contractors Limited
@@ -61,14 +77,6 @@ Potential customers can quickly understand what services are offered, trust the 
 - Domestic electrical work
 - Commercial electrical work
 
-**Design direction:**
-- Inspiration: Glancyr font specimen (modern geometric, bold, clean)
-- Black background, white text, orange accents
-- Minimalist and professional
-- High contrast, lots of whitespace
-- Keep placeholder testimonials for now
-- Keep placeholder social media links for now
-
 ## Constraints
 
 - **Tech stack**: Static HTML/CSS/JS (no framework changes)
@@ -79,10 +87,15 @@ Potential customers can quickly understand what services are offered, trust the 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Black as default, keep toggle | User wants dark aesthetic but flexibility for light mode | — Pending |
-| Orange accent color | Matches inspiration image, works with electrical theme | — Pending |
-| Remove spark cursor | Too playful for professional look | — Pending |
-| Session-based loading animation | Good first impression but annoying on repeat | — Pending |
+| Black as default, keep toggle | User wants dark aesthetic but flexibility for light mode | ✓ Good |
+| Orange (#FF8C00) accent color | Matches inspiration image, works with electrical theme | ✓ Good |
+| Remove spark cursor | Too playful for professional look | ✓ Good |
+| Session-based loading animation | Good first impression but annoying on repeat | ✓ Good |
+| Outfit font | Modern geometric sans-serif matches brand aesthetic | ✓ Good |
+| Blocking theme script | Prevents flash of light theme on page load | ✓ Good |
+| 64px section padding | Creates minimalist whitespace feel | ✓ Good |
+| data-placeholder attribute | Easy identification of content needing future updates | ✓ Good |
+| BroadcastChannel + storage fallback | Cross-tab sync works in all browsers including Safari private | ✓ Good |
 
 ---
-*Last updated: 2025-01-19 after initialization*
+*Last updated: 2026-01-21 after v1.0 milestone*
