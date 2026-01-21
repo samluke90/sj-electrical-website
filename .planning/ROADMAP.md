@@ -38,6 +38,11 @@ Plans:
 
 **Dependencies:** None (form HTML already exists from v1.0)
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 05-01-PLAN.md - Implement Formspree submission with validation and error handling
+
 **Requirements:**
 - FORM-01: Quote form submits to Formspree endpoint
 - FORM-02: Form submission sends email to info@sjec.uk
@@ -54,8 +59,8 @@ Plans:
 
 | Phase | Status | Plans | Started | Completed |
 |-------|--------|-------|---------|-----------|
-| 4 - Styling Fixes | ✓ Complete | 1/1 | 2026-01-21 | 2026-01-21 |
-| 5 - Form Functionality | Pending | 0/? | - | - |
+| 4 - Styling Fixes | Complete | 1/1 | 2026-01-21 | 2026-01-21 |
+| 5 - Form Functionality | Planned | 0/1 | - | - |
 
 ---
 *Roadmap created: 2026-01-21*
