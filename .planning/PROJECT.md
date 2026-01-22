@@ -88,6 +88,10 @@ Potential customers can quickly understand what services are offered, trust the 
 - **Hosting**: Must remain static-site compatible
 - **Browser support**: Modern browsers, mobile-first responsive
 
+## Future Considerations
+
+- **Photo upload limit**: Currently 5 photos max in quote form. May increase in future if needed (update MAX_FILES in js/quote-form.js)
+
 ## Key Decisions
 
 | Decision | Rationale | Outcome |

@@ -165,23 +165,16 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const formData = new FormData(quoteForm);
 
-            // Set reply-to from email field
-            const email = quoteForm.querySelector('#email').value;
-            formData.set('_replyto', email);
-
-            // Remove existing photos and re-add from our array
+            // Remove existing photos and re-add from our array with proper names
             formData.delete('photos');
             uploadedFiles.forEach((file, index) => {
                 formData.append(`photo_${index + 1}`, file);
             });
 
-            // Submit to Formspree with JSON response
+            // Submit to n8n webhook
             const response = await fetch(quoteForm.action, {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                body: formData
             });
 
             if (response.ok) {
@@ -190,13 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 formSuccess.classList.add('show');
                 formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                // Handle Formspree error response
-                const data = await response.json();
-                if (data.errors) {
-                    showError(data.errors.map(err => err.message).join('. '));
-                } else {
-                    showError('Something went wrong. Please try again or call us directly on 07875 210 678.');
-                }
+                showError('Something went wrong. Please try again or call us directly on 07875 210 678.');
                 resetButton();
             }
         } catch (error) {
