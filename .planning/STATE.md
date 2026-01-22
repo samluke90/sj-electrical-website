@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 
 ## Current Position
 
-Phase: Not started
-Plan: Not started
-Status: Ready to plan next milestone
-Last activity: 2026-01-22 - v1.1 milestone complete
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements for v1.2
+Last activity: 2026-01-22 - Milestone v1.2 started
 
-Progress: Milestones v1.0 + v1.1 shipped
+Progress: Milestones v1.0 + v1.1 shipped, v1.2 in progress
 
 ## Performance Metrics
 
@@ -60,11 +60,14 @@ Resume file: None
 
 ## Next Steps
 
-v1.1 milestone complete and archived. Ready to plan next milestone.
+Milestone v1.2 started. Define requirements, then create roadmap.
 
-**Suggested next work:**
+**v1.2 Focus:**
+- Formalize quote form enhancements (already implemented)
+- Cross-browser testing (voice recording especially)
+- Styling polish and edge case handling
+
+**Deferred to v1.3+:**
 - Real customer testimonials (CONT-01)
 - Real social media links (CONT-02)
 - Project gallery with completed work photos (CONT-03)
-
-Run `/gsd:new-milestone` to start planning v1.2 or v2.0.

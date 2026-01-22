@@ -39,9 +39,16 @@ Potential customers can quickly understand what services are offered, trust the 
 
 ### Active
 
-<!-- v1.2+: Future requirements go here -->
+<!-- v1.2: Quote Form Enhancements -->
 
-(None — next milestone not yet planned)
+- [ ] WhatsApp handoff button for alternative form submission
+- [ ] Voice message recording for verbal problem descriptions
+- [ ] Electrical symptom checker with guided diagnostic questions
+- [ ] Contact preferences fix (checkboxes reaching n8n)
+- [ ] Cross-browser testing (Chrome, Firefox, Safari, mobile)
+- [ ] Dark/light mode styling consistency for new components
+- [ ] Responsive design polish for new UI elements
+- [ ] Edge case handling (permissions denied, network failures)
 
 ### Out of Scope
 
@@ -112,5 +119,17 @@ Potential customers can quickly understand what services are offered, trust the 
 | Accessible error display (showError) | ARIA attributes provide screen reader feedback | ✓ Good |
 | Orange focus ring | Matches site brand colors and design system | ✓ Good |
 
+## Current Milestone: v1.2 Quote Form Enhancements
+
+**Goal:** Formalize, test, and polish the quote form enhancements (WhatsApp handoff, voice recording, symptom checker) with comprehensive cross-browser testing and edge case handling.
+
+**Target features:**
+- WhatsApp handoff as alternative submission method
+- Voice message recording (MediaRecorder API, 60s max)
+- Electrical symptom checker (Fault Finding, Rewiring, Consumer Unit)
+- Contact preferences bug fix
+- Cross-browser compatibility
+- Styling polish and responsive design
+
 ---
-*Last updated: 2026-01-22 after v1.1 milestone completion*
+*Last updated: 2026-01-22 after v1.2 milestone started*
