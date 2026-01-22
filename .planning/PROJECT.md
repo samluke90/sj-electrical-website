@@ -32,15 +32,16 @@ Potential customers can quickly understand what services are offered, trust the 
 - ✓ Spark cursor effect removed — v1.0
 - ✓ Session-based loading animation (first visit only) — v1.0
 - ✓ Skip animation on internal navigation — v1.0
+- ✓ Form inputs use dark background with light text — v1.1
+- ✓ Footer uses subtle dark background (#111) with light text — v1.1
+- ✓ Buttons on orange backgrounds use dark fill with white text — v1.1
+- ✓ Quote form sends email via webhook to info@sjec.uk — v1.1
 
 ### Active
 
-<!-- v1.1: Color fixes + Form functionality -->
+<!-- v1.2+: Future requirements go here -->
 
-- [ ] Form inputs use dark background with light text
-- [ ] Footer uses subtle dark background (#111 or similar) with light text
-- [ ] Buttons on orange backgrounds use dark fill with white text
-- [ ] Quote form sends email via Formspree to info@sjec.uk
+(None — next milestone not yet planned)
 
 ### Out of Scope
 
@@ -53,14 +54,15 @@ Potential customers can quickly understand what services are offered, trust the 
 
 ## Context
 
-**Shipped v1.0** with 4,691 LOC (HTML/CSS/JS static site).
+**Shipped v1.1** with 5,152 LOC (HTML/CSS/JS static site).
 
-**Tech stack:** Static HTML/CSS/JS, Outfit font, CSS custom properties for theming.
+**Tech stack:** Static HTML/CSS/JS, Outfit font, CSS custom properties for theming, n8n webhook for form submission.
 
 **Current state:**
 - Dark-first design (#0a0a0a background, #FF8C00 orange accent)
 - Session-based loader with cross-tab sync
 - FOLT prevention via blocking script
+- Functional quote form with accessible error handling
 - Placeholder testimonials and social links ready for real content
 
 **Business details:**
@@ -105,6 +107,10 @@ Potential customers can quickly understand what services are offered, trust the 
 | 64px section padding | Creates minimalist whitespace feel | ✓ Good |
 | data-placeholder attribute | Easy identification of content needing future updates | ✓ Good |
 | BroadcastChannel + storage fallback | Cross-tab sync works in all browsers including Safari private | ✓ Good |
+| Explicit #111111 for footer | Legacy --dark token maps to white text (confusing naming) | ✓ Good |
+| n8n webhook instead of Formspree | More control over form processing and notifications | ✓ Good |
+| Accessible error display (showError) | ARIA attributes provide screen reader feedback | ✓ Good |
+| Orange focus ring | Matches site brand colors and design system | ✓ Good |
 
 ---
-*Last updated: 2026-01-21 after starting v1.1 milestone*
+*Last updated: 2026-01-22 after v1.1 milestone completion*

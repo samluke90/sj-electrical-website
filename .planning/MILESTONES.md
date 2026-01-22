@@ -1,5 +1,31 @@
 # Project Milestones: SJ Electrical Contractors Website
 
+## v1.1 Color Fixes + Form Functionality (Shipped: 2026-01-22)
+
+**Delivered:** Dark mode contrast fixes and functional quote form with accessible error handling.
+
+**Phases completed:** 4-5 (2 plans total)
+
+**Key accomplishments:**
+
+- Fixed dark mode contrast for form inputs, footer, and CTA buttons
+- Quote form functional with n8n webhook backend
+- Accessible error handling with ARIA attributes and role="alert"
+- Loading states and success confirmation for form submission
+
+**Stats:**
+
+- 14 files modified
+- 5,152 lines of HTML/CSS/JS (total codebase)
+- 2 phases, 2 plans, ~6 tasks
+- 1 day from v1.0 to v1.1
+
+**Git range:** `feat(04-01)` → `feat(form)`
+
+**What's next:** Real testimonials, social media links, project gallery
+
+---
+
 ## v1.0 MVP (Shipped: 2026-01-21)
 
 **Delivered:** Professional website redesign with black/white/orange aesthetic, session-based animations, and accurate business information.
@@ -24,6 +50,6 @@
 
 **Git range:** `feat(01-01)` → `feat(03-02)`
 
-**What's next:** Real testimonials, social media links, project gallery
+**What's next:** Color fixes and form functionality (v1.1)
 
 ---
