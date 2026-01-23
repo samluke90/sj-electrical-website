@@ -1330,6 +1330,281 @@ select.form-control option {
 }
 
 /* ============================================
+   WhatsApp Button
+   ============================================ */
+.form-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: var(--dark-light);
+    font-size: 0.9rem;
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+}
+
+.form-divider span {
+    padding: 0 15px;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   Voice Recorder
+   ============================================ */
+.voice-recorder {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.record-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--color-bg-elevated);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.record-btn:hover {
+    border-color: var(--color-accent);
+    background: var(--color-bg-secondary);
+}
+
+.record-btn.recording {
+    background: var(--color-error);
+    border-color: var(--color-error);
+    color: #fff;
+}
+
+.record-btn.recording:hover {
+    background: #cc4444;
+    border-color: #cc4444;
+}
+
+.record-btn .mic-icon {
+    transition: var(--transition);
+}
+
+.record-btn.recording .mic-icon {
+    animation: micPulse 1s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.recording-indicator {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(255, 82, 82, 0.1);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+}
+
+.recording-indicator.visible {
+    display: flex;
+}
+
+.recording-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--color-error);
+    border-radius: 50%;
+    animation: recordingPulse 1s ease-in-out infinite;
+}
+
+@keyframes recordingPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.recording-label {
+    color: var(--dark-light);
+    font-size: 0.85rem;
+}
+
+.voice-playback {
+    display: none;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius);
+}
+
+.voice-playback.visible {
+    display: flex;
+}
+
+.voice-playback audio {
+    flex: 1;
+    height: 40px;
+}
+
+.delete-voice-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid var(--color-error);
+    border-radius: var(--radius);
+    color: var(--color-error);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.delete-voice-btn:hover {
+    background: var(--color-error);
+    color: #fff;
+}
+
+/* ============================================
+   Symptom Checker
+   ============================================ */
+.symptom-checker {
+    display: none;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--color-accent);
+    animation: slideDown 0.3s ease;
+}
+
+.symptom-checker.visible {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.symptom-checker h4 {
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.symptom-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.symptom-question {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.symptom-question > label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+}
+
+.symptom-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.symptom-option {
+    display: flex;
+    cursor: pointer;
+}
+
+.symptom-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.symptom-option span {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--color-bg-elevated);
+    border: 2px solid var(--color-border);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    transition: var(--transition);
+}
+
+.symptom-option:hover span {
+    border-color: var(--color-accent);
+}
+
+.symptom-option input:checked + span {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+}
+
+.symptom-option input:focus-visible + span {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .symptom-checker {
+    background: #f5f5f5;
+}
+
+[data-theme="light"] .symptom-option span {
+    background: #fff;
+}
+
+[data-theme="light"] .voice-playback {
+    background: #f5f5f5;
+}
+
+[data-theme="light"] .recording-indicator {
+    background: rgba(255, 82, 82, 0.08);
+}
+
+/* ============================================
    About Page
    ============================================ */
 .about-intro {
@@ -1697,6 +1972,31 @@ select.form-control option {
 
     .areas-list {
         grid-template-columns: 1fr;
+    }
+
+    /* Voice recorder responsive */
+    .voice-recorder {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .voice-playback {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .voice-playback audio {
+        width: 100%;
+    }
+
+    /* Symptom options responsive */
+    .symptom-options {
+        flex-direction: column;
+    }
+
+    .symptom-option span {
+        width: 100%;
+        text-align: center;
     }
 }
 

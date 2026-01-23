@@ -165,6 +165,25 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const formData = new FormData(quoteForm);
 
+            // Fix: Collect contact method checkboxes as comma-separated string
+            const contactMethods = [];
+            document.querySelectorAll('input[name="contact_method"]:checked').forEach(cb => {
+                contactMethods.push(cb.value);
+            });
+            formData.delete('contact_method');
+            formData.append('contact_method', contactMethods.join(', ') || 'Not specified');
+
+            // Collect symptom checker answers if present
+            const symptomAnswers = collectSymptomAnswers();
+            if (symptomAnswers) {
+                formData.append('symptom_details', symptomAnswers);
+            }
+
+            // Add voice message if recorded
+            if (voiceBlob) {
+                formData.append('voice_message', voiceBlob, 'voice-message.webm');
+            }
+
             // Remove existing photos and re-add from our array with proper names
             formData.delete('photos');
             uploadedFiles.forEach((file, index) => {
@@ -247,5 +266,271 @@ document.addEventListener('DOMContentLoaded', function() {
             // Convert to uppercase
             e.target.value = e.target.value.toUpperCase();
         });
+    }
+
+    /* ============================================
+       WhatsApp Handoff
+       ============================================ */
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = buildWhatsAppMessage();
+            const phoneNumber = '447875210678';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        });
+    }
+
+    function buildWhatsAppMessage() {
+        const name = document.getElementById('name')?.value || '';
+        const phone = document.getElementById('phone')?.value || '';
+        const email = document.getElementById('email')?.value || '';
+        const postcode = document.getElementById('postcode')?.value || '';
+        const service = document.getElementById('service')?.value || '';
+        const urgency = document.getElementById('urgency')?.value || '';
+        const description = document.getElementById('description')?.value || '';
+
+        // Collect symptom answers
+        const symptomDetails = collectSymptomAnswers();
+
+        let message = `*Quote Request*\n\n`;
+        message += `Name: ${name}\n`;
+        message += `Phone: ${phone}\n`;
+        message += `Email: ${email}\n`;
+        message += `Postcode: ${postcode}\n\n`;
+        message += `Service: ${service}\n`;
+        message += `Urgency: ${urgency}\n`;
+
+        if (symptomDetails) {
+            message += `\n${symptomDetails}\n`;
+        }
+
+        message += `\nDescription:\n${description}\n\n`;
+        message += `(Sent from sjec.uk quote form)`;
+
+        return message;
+    }
+
+    /* ============================================
+       Voice Message Recording
+       ============================================ */
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let voiceBlob = null;
+    let recordingTimer = null;
+    let recordingSeconds = 0;
+    const MAX_RECORDING_SECONDS = 60;
+
+    const voiceSection = document.getElementById('voiceSection');
+    const recordBtn = document.getElementById('recordBtn');
+    const recordingIndicator = document.getElementById('recordingIndicator');
+    const recordingTime = document.getElementById('recordingTime');
+    const voicePlayback = document.getElementById('voicePlayback');
+    const voiceAudio = document.getElementById('voiceAudio');
+    const deleteVoiceBtn = document.getElementById('deleteVoiceBtn');
+
+    // Check for MediaRecorder support
+    if (voiceSection && !navigator.mediaDevices?.getUserMedia) {
+        voiceSection.style.display = 'none';
+    }
+
+    if (recordBtn) {
+        recordBtn.addEventListener('click', async function() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                stopRecording();
+            } else {
+                await startRecording();
+            }
+        });
+    }
+
+    if (deleteVoiceBtn) {
+        deleteVoiceBtn.addEventListener('click', deleteRecording);
+    }
+
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = (e) => {
+                audioChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                voiceBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(voiceBlob);
+                voiceAudio.src = audioUrl;
+                voicePlayback.classList.add('visible');
+                stream.getTracks().forEach(track => track.stop());
+            };
+
+            mediaRecorder.start();
+            recordBtn.classList.add('recording');
+            recordBtn.querySelector('.record-text').textContent = 'Stop';
+            recordingIndicator.classList.add('visible');
+            recordingSeconds = 0;
+            updateRecordingTime();
+
+            recordingTimer = setInterval(() => {
+                recordingSeconds++;
+                updateRecordingTime();
+                if (recordingSeconds >= MAX_RECORDING_SECONDS) {
+                    stopRecording();
+                }
+            }, 1000);
+
+        } catch (err) {
+            console.error('Microphone access denied:', err);
+            showError('Microphone access denied. Please allow microphone access to record a voice message.');
+        }
+    }
+
+    function stopRecording() {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.stop();
+            clearInterval(recordingTimer);
+            recordBtn.classList.remove('recording');
+            recordBtn.querySelector('.record-text').textContent = 'Record';
+            recordingIndicator.classList.remove('visible');
+        }
+    }
+
+    function deleteRecording() {
+        voiceBlob = null;
+        voiceAudio.src = '';
+        voicePlayback.classList.remove('visible');
+        recordingSeconds = 0;
+        updateRecordingTime();
+    }
+
+    function updateRecordingTime() {
+        const mins = Math.floor(recordingSeconds / 60).toString().padStart(2, '0');
+        const secs = (recordingSeconds % 60).toString().padStart(2, '0');
+        if (recordingTime) {
+            recordingTime.textContent = `${mins}:${secs}`;
+        }
+    }
+
+    /* ============================================
+       Electrical Symptom Checker
+       ============================================ */
+    const serviceSelect = document.getElementById('service');
+    const symptomChecker = document.getElementById('symptomChecker');
+
+    const symptomQuestions = {
+        'Domestic - Fault Finding': {
+            title: 'Help us diagnose the issue',
+            questions: [
+                {
+                    id: 'fault_symptom',
+                    label: "What's happening?",
+                    options: ['Lights flickering', 'Tripping breaker/fuse', 'No power to outlets', 'Burning smell', 'Other']
+                },
+                {
+                    id: 'fault_area',
+                    label: 'Affecting which area?',
+                    options: ['One room', 'Multiple rooms', 'Whole property']
+                },
+                {
+                    id: 'fault_timing',
+                    label: 'When did it start?',
+                    options: ['Just now', 'Last few days', 'Ongoing issue']
+                }
+            ]
+        },
+        'Domestic - Rewiring': {
+            title: 'Tell us about your property',
+            questions: [
+                {
+                    id: 'rewire_property',
+                    label: 'Property type?',
+                    options: ['Flat', 'Terraced house', 'Semi-detached', 'Detached', 'Commercial']
+                },
+                {
+                    id: 'rewire_age',
+                    label: 'Approximate age of wiring?',
+                    options: ['Pre-1960s', '1960s-1980s', '1980s-2000s', 'Post-2000s', 'Not sure']
+                },
+                {
+                    id: 'rewire_scope',
+                    label: 'Full or partial rewire?',
+                    options: ['Full property', 'Specific rooms only']
+                }
+            ]
+        },
+        'Domestic - Consumer Unit': {
+            title: 'About your fuse box',
+            questions: [
+                {
+                    id: 'cu_type',
+                    label: 'Current fuse box type?',
+                    options: ['Old rewirable fuses', 'MCB breakers (switches)', 'Modern RCD protected', 'Not sure']
+                },
+                {
+                    id: 'cu_reason',
+                    label: 'Reason for upgrade?',
+                    options: ['Required for new work', 'Keeps tripping', 'Insurance/landlord requirement', 'General upgrade']
+                }
+            ]
+        }
+    };
+
+    if (serviceSelect && symptomChecker) {
+        serviceSelect.addEventListener('change', function() {
+            showSymptomQuestions(this.value);
+        });
+    }
+
+    function showSymptomQuestions(service) {
+        if (!symptomChecker) return;
+
+        const config = symptomQuestions[service];
+        if (!config) {
+            symptomChecker.classList.remove('visible');
+            symptomChecker.innerHTML = '';
+            return;
+        }
+
+        let html = `<h4>${config.title}</h4><div class="symptom-questions">`;
+
+        config.questions.forEach(q => {
+            html += `
+                <div class="symptom-question">
+                    <label>${q.label}</label>
+                    <div class="symptom-options">
+                        ${q.options.map(opt => `
+                            <label class="symptom-option">
+                                <input type="radio" name="${q.id}" value="${opt}">
+                                <span>${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        symptomChecker.innerHTML = html;
+        symptomChecker.classList.add('visible');
+    }
+
+    function collectSymptomAnswers() {
+        if (!symptomChecker || !symptomChecker.classList.contains('visible')) {
+            return null;
+        }
+
+        const answers = [];
+        symptomChecker.querySelectorAll('.symptom-question').forEach(q => {
+            const label = q.querySelector('label:first-child')?.textContent || '';
+            const selected = q.querySelector('input:checked');
+            if (selected) {
+                answers.push(`${label} ${selected.value}`);
+            }
+        });
+
+        return answers.length > 0 ? 'Diagnostic Info:\n' + answers.join('\n') : null;
     }
 });
