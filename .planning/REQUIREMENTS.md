@@ -9,12 +9,12 @@ Requirements for Quote Form Enhancements milestone.
 
 ### Form Features
 
-- [ ] **FORM-01**: User can send quote request via WhatsApp with pre-filled message
-- [ ] **FORM-02**: User can record voice message describing electrical issue (60s max)
-- [ ] **FORM-03**: User sees guided diagnostic questions for Fault Finding service
-- [ ] **FORM-04**: User sees guided diagnostic questions for Rewiring service
-- [ ] **FORM-05**: User sees guided diagnostic questions for Consumer Unit service
-- [ ] **FORM-06**: Contact preferences reach n8n webhook correctly
+- [x] **FORM-01**: User can send quote request via WhatsApp with pre-filled message
+- [x] **FORM-02**: User can record voice message describing electrical issue (60s max)
+- [x] **FORM-03**: User sees guided diagnostic questions for Fault Finding service
+- [x] **FORM-04**: User sees guided diagnostic questions for Rewiring service
+- [x] **FORM-05**: User sees guided diagnostic questions for Consumer Unit service
+- [x] **FORM-06**: Contact preferences reach n8n webhook correctly
 
 ### Testing
 
@@ -60,12 +60,12 @@ Deferred to v1.3+.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FORM-01 | Phase 6 | Pending |
-| FORM-02 | Phase 6 | Pending |
-| FORM-03 | Phase 6 | Pending |
-| FORM-04 | Phase 6 | Pending |
-| FORM-05 | Phase 6 | Pending |
-| FORM-06 | Phase 6 | Pending |
+| FORM-01 | Phase 6 | Complete |
+| FORM-02 | Phase 6 | Complete |
+| FORM-03 | Phase 6 | Complete |
+| FORM-04 | Phase 6 | Complete |
+| FORM-05 | Phase 6 | Complete |
+| FORM-06 | Phase 6 | Complete |
 | TEST-01 | Phase 7 | Pending |
 | TEST-02 | Phase 7 | Pending |
 | TEST-03 | Phase 7 | Pending |
@@ -87,4 +87,4 @@ Deferred to v1.3+.
 
 ---
 *Requirements defined: 2026-01-22*
-*Last updated: 2026-01-22 after initial definition*
+*Last updated: 2026-01-23 after Phase 6 completion*
