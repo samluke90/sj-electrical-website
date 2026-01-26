@@ -1213,8 +1213,10 @@ select.form-control option {
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 28px;
-    height: 28px;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
     background: var(--danger);
     color: var(--white);
     border: none;
@@ -1357,6 +1359,7 @@ select.form-control option {
     color: #fff;
     width: 100%;
     max-width: 250px;
+    min-height: 44px;
     margin: 0 auto;
 }
 
@@ -1382,6 +1385,7 @@ select.form-control option {
     align-items: center;
     gap: 10px;
     padding: 14px 24px;
+    min-height: 44px;
     background: var(--color-bg-elevated);
     border: 2px solid var(--color-border);
     border-radius: var(--radius);
@@ -1477,8 +1481,10 @@ select.form-control option {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
     background: transparent;
     border: 2px solid var(--color-error);
     border-radius: var(--radius);
@@ -1562,8 +1568,11 @@ select.form-control option {
 }
 
 .symptom-option span {
-    display: inline-block;
-    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    min-height: 44px;
     background: var(--color-bg-elevated);
     border: 2px solid var(--color-border);
     border-radius: 50px;
