@@ -179,9 +179,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append('symptom_details', symptomAnswers);
             }
 
-            // Add voice message if recorded
+            // Add voice message if recorded (use correct extension based on mimeType)
             if (voiceBlob) {
-                formData.append('voice_message', voiceBlob, 'voice-message.webm');
+                const voiceExtension = voiceMimeType && voiceMimeType.includes('mp4') ? 'mp4' : 'webm';
+                formData.append('voice_message', voiceBlob, `voice-message.${voiceExtension}`);
             }
 
             // Remove existing photos and re-add from our array with proper names
@@ -318,9 +319,34 @@ document.addEventListener('DOMContentLoaded', function() {
     let mediaRecorder = null;
     let audioChunks = [];
     let voiceBlob = null;
+    let voiceMimeType = null;
     let recordingTimer = null;
     let recordingSeconds = 0;
     const MAX_RECORDING_SECONDS = 60;
+
+    /**
+     * Detect supported audio MIME type for MediaRecorder
+     * Returns the first supported format in preference order:
+     * 1. audio/webm;codecs=opus (Chrome/Firefox preference)
+     * 2. audio/webm (generic webm)
+     * 3. audio/mp4 (Safari preference)
+     * 4. '' (let browser choose default)
+     */
+    function getSupportedMimeType() {
+        const types = [
+            'audio/webm;codecs=opus',
+            'audio/webm',
+            'audio/mp4'
+        ];
+
+        for (const type of types) {
+            if (MediaRecorder.isTypeSupported(type)) {
+                return type;
+            }
+        }
+
+        return ''; // Let browser choose default
+    }
 
     const voiceSection = document.getElementById('voiceSection');
     const recordBtn = document.getElementById('recordBtn');
@@ -352,7 +378,12 @@ document.addEventListener('DOMContentLoaded', function() {
     async function startRecording() {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            mediaRecorder = new MediaRecorder(stream);
+
+            // Detect supported MIME type for cross-browser compatibility
+            const mimeType = getSupportedMimeType();
+            const options = mimeType ? { mimeType } : {};
+
+            mediaRecorder = new MediaRecorder(stream, options);
             audioChunks = [];
 
             mediaRecorder.ondataavailable = (e) => {
@@ -360,7 +391,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             mediaRecorder.onstop = () => {
-                voiceBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                // Use actual mimeType from recorder (may differ from requested)
+                voiceMimeType = mediaRecorder.mimeType || mimeType || 'audio/webm';
+                voiceBlob = new Blob(audioChunks, { type: voiceMimeType });
                 const audioUrl = URL.createObjectURL(voiceBlob);
                 voiceAudio.src = audioUrl;
                 voicePlayback.classList.add('visible');
