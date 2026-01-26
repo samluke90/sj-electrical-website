@@ -356,9 +356,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const voiceAudio = document.getElementById('voiceAudio');
     const deleteVoiceBtn = document.getElementById('deleteVoiceBtn');
 
-    // Check for MediaRecorder support
-    if (voiceSection && !navigator.mediaDevices?.getUserMedia) {
-        voiceSection.style.display = 'none';
+    // Progressive enhancement: Hide voice section if recording not supported
+    // Check for both getUserMedia (microphone access) and MediaRecorder (recording capability)
+    if (voiceSection) {
+        const hasGetUserMedia = navigator.mediaDevices?.getUserMedia;
+        const hasMediaRecorder = typeof MediaRecorder !== 'undefined';
+
+        if (!hasGetUserMedia || !hasMediaRecorder) {
+            voiceSection.style.display = 'none';
+        }
     }
 
     if (recordBtn) {
@@ -416,8 +422,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
 
         } catch (err) {
-            console.error('Microphone access denied:', err);
-            showError('Microphone access denied. Please allow microphone access to record a voice message.');
+            console.error('Recording error:', err);
+
+            // Provide specific error messages based on error type
+            let errorMessage;
+            switch (err.name) {
+                case 'NotAllowedError':
+                case 'PermissionDeniedError':
+                    errorMessage = 'Microphone access denied. Allow microphone in browser settings to record.';
+                    break;
+                case 'NotFoundError':
+                    errorMessage = 'No microphone found. Connect a microphone to record.';
+                    break;
+                case 'NotSupportedError':
+                    errorMessage = 'Voice recording not supported in this browser.';
+                    break;
+                default:
+                    errorMessage = 'Could not start recording. Voice message unavailable.';
+            }
+
+            showError(errorMessage);
         }
     }
 
