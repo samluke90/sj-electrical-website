@@ -4,7 +4,7 @@
 
 - ✅ **v1.0 MVP** - Phases 1-3 (shipped 2026-01-22)
 - ✅ **v1.1 Form Functionality** - Phases 4-5 (shipped 2026-01-22)
-- 🚧 **v1.2 Quote Form Enhancements** - Phases 6-7 (in progress)
+- ✅ **v1.2 Quote Form Enhancements** - Phases 6-7 (shipped 2026-01-26)
 
 ## Phases
 
@@ -56,7 +56,8 @@ Plans:
 
 </details>
 
-### 🚧 v1.2 Quote Form Enhancements (In Progress)
+<details>
+<summary>✅ v1.2 Quote Form Enhancements (Phases 6-7) - SHIPPED 2026-01-26</summary>
 
 **Milestone Goal:** Formalize, test, and polish the quote form enhancements (WhatsApp handoff, voice recording, symptom checker) with comprehensive cross-browser testing and edge case handling.
 
@@ -88,8 +89,10 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Cross-browser compatibility and edge case handling
-- [ ] 07-02-PLAN.md — Responsive touch targets and styling polish
+- [x] 07-01-PLAN.md — Cross-browser compatibility and edge case handling
+- [x] 07-02-PLAN.md — Responsive touch targets and styling polish
+
+</details>
 
 ## Progress
 
@@ -101,4 +104,4 @@ Plans:
 | 4. Styling Fixes | v1.1 | 1/1 | Complete | 2026-01-22 |
 | 5. Form Functionality | v1.1 | 1/1 | Complete | 2026-01-22 |
 | 6. Formalize Implementation | v1.2 | 1/1 | Complete | 2026-01-23 |
-| 7. Testing & Polish | v1.2 | 0/2 | Not started | - |
+| 7. Testing & Polish | v1.2 | 2/2 | Complete | 2026-01-26 |

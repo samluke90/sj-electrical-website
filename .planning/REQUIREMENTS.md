@@ -18,25 +18,25 @@ Requirements for Quote Form Enhancements milestone.
 
 ### Testing
 
-- [ ] **TEST-01**: Voice recording works in Chrome desktop
-- [ ] **TEST-02**: Voice recording works in Firefox desktop
-- [ ] **TEST-03**: Voice recording works in Safari desktop
-- [ ] **TEST-04**: Voice recording works on mobile browsers (iOS Safari, Android Chrome)
-- [ ] **TEST-05**: WhatsApp button opens correctly on desktop and mobile
+- [x] **TEST-01**: Voice recording works in Chrome desktop
+- [x] **TEST-02**: Voice recording works in Firefox desktop
+- [x] **TEST-03**: Voice recording works in Safari desktop
+- [x] **TEST-04**: Voice recording works on mobile browsers (iOS Safari, Android Chrome)
+- [x] **TEST-05**: WhatsApp button opens correctly on desktop and mobile
 
 ### Polish
 
-- [ ] **PLSH-01**: New components styled correctly in dark mode
-- [ ] **PLSH-02**: New components styled correctly in light mode
-- [ ] **PLSH-03**: Voice recorder responsive on mobile
-- [ ] **PLSH-04**: Symptom checker responsive on mobile
+- [x] **PLSH-01**: New components styled correctly in dark mode
+- [x] **PLSH-02**: New components styled correctly in light mode
+- [x] **PLSH-03**: Voice recorder responsive on mobile
+- [x] **PLSH-04**: Symptom checker responsive on mobile
 
 ### Edge Cases
 
-- [ ] **EDGE-01**: Graceful handling when microphone permission denied
-- [ ] **EDGE-02**: Voice section hidden if MediaRecorder not supported
-- [ ] **EDGE-03**: Form submission works without voice recording
-- [ ] **EDGE-04**: WhatsApp button works even if form fields empty
+- [x] **EDGE-01**: Graceful handling when microphone permission denied
+- [x] **EDGE-02**: Voice section hidden if MediaRecorder not supported
+- [x] **EDGE-03**: Form submission works without voice recording
+- [x] **EDGE-04**: WhatsApp button works even if form fields empty
 
 ## Future Requirements
 
@@ -66,19 +66,19 @@ Deferred to v1.3+.
 | FORM-04 | Phase 6 | Complete |
 | FORM-05 | Phase 6 | Complete |
 | FORM-06 | Phase 6 | Complete |
-| TEST-01 | Phase 7 | Pending |
-| TEST-02 | Phase 7 | Pending |
-| TEST-03 | Phase 7 | Pending |
-| TEST-04 | Phase 7 | Pending |
-| TEST-05 | Phase 7 | Pending |
-| PLSH-01 | Phase 7 | Pending |
-| PLSH-02 | Phase 7 | Pending |
-| PLSH-03 | Phase 7 | Pending |
-| PLSH-04 | Phase 7 | Pending |
-| EDGE-01 | Phase 7 | Pending |
-| EDGE-02 | Phase 7 | Pending |
-| EDGE-03 | Phase 7 | Pending |
-| EDGE-04 | Phase 7 | Pending |
+| TEST-01 | Phase 7 | Complete |
+| TEST-02 | Phase 7 | Complete |
+| TEST-03 | Phase 7 | Complete |
+| TEST-04 | Phase 7 | Complete |
+| TEST-05 | Phase 7 | Complete |
+| PLSH-01 | Phase 7 | Complete |
+| PLSH-02 | Phase 7 | Complete |
+| PLSH-03 | Phase 7 | Complete |
+| PLSH-04 | Phase 7 | Complete |
+| EDGE-01 | Phase 7 | Complete |
+| EDGE-02 | Phase 7 | Complete |
+| EDGE-03 | Phase 7 | Complete |
+| EDGE-04 | Phase 7 | Complete |
 
 **Coverage:**
 - v1.2 requirements: 19 total
@@ -87,4 +87,4 @@ Deferred to v1.3+.
 
 ---
 *Requirements defined: 2026-01-22*
-*Last updated: 2026-01-23 after Phase 6 completion*
+*Last updated: 2026-01-26 after Phase 7 completion*
