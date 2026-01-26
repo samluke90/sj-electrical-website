@@ -85,11 +85,11 @@ Plans:
   3. All new components (voice recorder, symptom checker, WhatsApp button) styled correctly in both dark and light modes
   4. Voice recorder and symptom checker are fully responsive on mobile devices
   5. Form gracefully handles edge cases (microphone denied, MediaRecorder unsupported, form submission without voice, WhatsApp with empty fields)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: Cross-browser testing and edge case validation
-- [ ] 07-02: Responsive design and styling polish
+- [ ] 07-01-PLAN.md — Cross-browser compatibility and edge case handling
+- [ ] 07-02-PLAN.md — Responsive touch targets and styling polish
 
 ## Progress
 
