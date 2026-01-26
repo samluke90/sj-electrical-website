@@ -276,6 +276,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function(e) {
             e.preventDefault();
+
+            // Validate required fields before opening WhatsApp
+            const name = document.getElementById('name')?.value?.trim();
+            const phone = document.getElementById('phone')?.value?.trim();
+            const service = document.getElementById('service')?.value;
+
+            if (!name || !phone || !service) {
+                showError('Please fill in name, phone, and service before using WhatsApp.');
+                return;
+            }
+
+            clearErrors();
             const message = buildWhatsAppMessage();
             const phoneNumber = '447875210678';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
