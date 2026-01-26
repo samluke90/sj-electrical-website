@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 7 of 7 (Testing & Polish)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-01-23 - Completed 06-01-PLAN.md (verify and commit)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-26 - Completed 07-01-PLAN.md (cross-browser compatibility)
 
-Progress: [█████████░] 86% (6 of 7 phases complete from v1.0 + v1.1 + v1.2)
+Progress: [██████████] 93% (9.5 of 10 plans complete from v1.0 + v1.1 + v1.2)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 9 min
-- Total execution time: 82 min
+- Total plans completed: 10
+- Average duration: 12 min
+- Total execution time: 127 min
 
 **By Phase (v1.0):**
 
@@ -43,6 +43,7 @@ Progress: [█████████░] 86% (6 of 7 phases complete from v1.0
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 06-formalize-implementation | 1 | 5 min | 5 min |
+| 07-testing-polish | 1 | 45 min | 45 min |
 
 ## Accumulated Context
 
@@ -60,30 +61,37 @@ Recent decisions affecting v1.2:
 - Service-specific diagnostic questions only for Fault Finding, Rewiring, Consumer Unit
 - Contact preferences as comma-separated string (Phone, Email, Text/WhatsApp)
 
+Phase 7 decisions:
+- Format detection preference order: webm;opus > webm > mp4 > browser default
+- Hide voice section entirely if MediaRecorder unavailable (progressive enhancement)
+- Specific error messages for NotAllowedError, NotFoundError, NotSupportedError
+- WhatsApp validation requires name, phone, and service before opening
+
 ### Pending Todos
 
 None.
 
 ### Blockers/Concerns
 
-Phase 7 considerations:
-- MediaRecorder API compatibility across browsers (Safari, Firefox, Chrome)
-- Microphone permission UX on iOS Safari
+Resolved in 07-01:
+- [DONE] MediaRecorder API compatibility across browsers (Safari, Firefox, Chrome)
+- [DONE] Microphone permission UX handled with specific error messages
+
+Remaining:
+- Microphone permission UX on iOS Safari (needs device testing)
 - WhatsApp Web API on non-mobile devices (wa.me redirects)
 - Voice recording in private/incognito mode
 
 ## Session Continuity
 
-Last session: 2026-01-23
-Stopped at: Completed 06-01-PLAN.md (verify and commit)
+Last session: 2026-01-26
+Stopped at: Completed 07-01-PLAN.md (cross-browser compatibility)
 Resume file: None
 
 ## Next Steps
 
-Phase 6 complete. Ready for Phase 7: Cross-browser Testing and Edge Case Handling
-- Test MediaRecorder API across browsers (Chrome, Firefox, Safari, mobile)
-- Handle microphone permission denials gracefully
-- Test WhatsApp handoff on desktop and mobile
-- Test voice recording in private/incognito mode
-- Polish responsive design for new form components
-- Handle edge cases (network failures, browser compatibility)
+Phase 7 plan 1 complete. Remaining work:
+- Plan 07-02: Additional testing and polish (if needed)
+- Device testing for iOS Safari microphone permissions
+- Testing WhatsApp handoff on desktop vs mobile
+- Testing voice recording in incognito mode
