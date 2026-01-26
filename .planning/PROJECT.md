@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A professional website for SJ Electrical Contractors Limited, a London-based NICEIC Approved Contractor. Features a dark-first minimalist design (black/white/orange), session-based loading animation, and complete business information for domestic and commercial customers.
+A professional website for SJ Electrical Contractors Limited, a London-based NICEIC Approved Contractor. Features a dark-first minimalist design (black/white/orange), session-based loading animation, complete business information, and an enhanced quote form with WhatsApp handoff, voice recording, and service-specific diagnostic questions.
 
 ## Core Value
 
@@ -36,19 +36,22 @@ Potential customers can quickly understand what services are offered, trust the 
 - ✓ Footer uses subtle dark background (#111) with light text — v1.1
 - ✓ Buttons on orange backgrounds use dark fill with white text — v1.1
 - ✓ Quote form sends email via webhook to info@sjec.uk — v1.1
+- ✓ WhatsApp handoff button with pre-filled message — v1.2
+- ✓ Voice message recording (60s max, cross-browser) — v1.2
+- ✓ Electrical symptom checker (Fault Finding, Rewiring, Consumer Unit) — v1.2
+- ✓ Contact preferences fix (checkboxes reaching n8n) — v1.2
+- ✓ Cross-browser voice recording (Safari audio/mp4 format detection) — v1.2
+- ✓ Dark/light mode styling for new components — v1.2
+- ✓ 44px WCAG touch targets for mobile accessibility — v1.2
+- ✓ Progressive enhancement (voice section hidden if unsupported) — v1.2
 
 ### Active
 
-<!-- v1.2: Quote Form Enhancements -->
+<!-- v1.3+: Future enhancements -->
 
-- [ ] WhatsApp handoff button for alternative form submission
-- [ ] Voice message recording for verbal problem descriptions
-- [ ] Electrical symptom checker with guided diagnostic questions
-- [ ] Contact preferences fix (checkboxes reaching n8n)
-- [ ] Cross-browser testing (Chrome, Firefox, Safari, mobile)
-- [ ] Dark/light mode styling consistency for new components
-- [ ] Responsive design polish for new UI elements
-- [ ] Edge case handling (permissions denied, network failures)
+- [ ] Real customer testimonials replace placeholders
+- [ ] Real social media links replace placeholders
+- [ ] Project gallery with completed work photos
 
 ### Out of Scope
 
@@ -61,15 +64,18 @@ Potential customers can quickly understand what services are offered, trust the 
 
 ## Context
 
-**Shipped v1.1** with 5,152 LOC (HTML/CSS/JS static site).
+**Shipped v1.2** with 4,733 LOC (HTML/CSS/JS static site).
 
-**Tech stack:** Static HTML/CSS/JS, Outfit font, CSS custom properties for theming, n8n webhook for form submission.
+**Tech stack:** Static HTML/CSS/JS, Outfit font, CSS custom properties for theming, n8n webhook for form submission, MediaRecorder API for voice recording, WhatsApp Web API for message handoff.
 
 **Current state:**
 - Dark-first design (#0a0a0a background, #FF8C00 orange accent)
 - Session-based loader with cross-tab sync
 - FOLT prevention via blocking script
-- Functional quote form with accessible error handling
+- Enhanced quote form with WhatsApp handoff and voice recording
+- Service-specific symptom checker (Fault Finding, Rewiring, Consumer Unit)
+- Cross-browser compatible (Safari audio/mp4, Chrome/Firefox audio/webm)
+- Mobile-accessible 44px touch targets
 - Placeholder testimonials and social links ready for real content
 
 **Business details:**
@@ -118,18 +124,13 @@ Potential customers can quickly understand what services are offered, trust the 
 | n8n webhook instead of Formspree | More control over form processing and notifications | ✓ Good |
 | Accessible error display (showError) | ARIA attributes provide screen reader feedback | ✓ Good |
 | Orange focus ring | Matches site brand colors and design system | ✓ Good |
-
-## Current Milestone: v1.2 Quote Form Enhancements
-
-**Goal:** Formalize, test, and polish the quote form enhancements (WhatsApp handoff, voice recording, symptom checker) with comprehensive cross-browser testing and edge case handling.
-
-**Target features:**
-- WhatsApp handoff as alternative submission method
-- Voice message recording (MediaRecorder API, 60s max)
-- Electrical symptom checker (Fault Finding, Rewiring, Consumer Unit)
-- Contact preferences bug fix
-- Cross-browser compatibility
-- Styling polish and responsive design
+| MediaRecorder API for voice recording | Browser-native, no external libraries needed | ✓ Good |
+| 60-second recording limit | Prevents oversized uploads, encourages concise descriptions | ✓ Good |
+| WhatsApp Web API (wa.me) | Pre-filled message handoff, works on all devices | ✓ Good |
+| Service-specific diagnostic questions | Fault Finding, Rewiring, Consumer Unit only | ✓ Good |
+| Format detection (webm > mp4) | Safari compatibility via isTypeSupported check | ✓ Good |
+| Progressive enhancement for voice | Hide section if MediaRecorder unavailable | ✓ Good |
+| 44px minimum touch targets | WCAG 2.5.8 compliance for mobile accessibility | ✓ Good |
 
 ---
-*Last updated: 2026-01-22 after v1.2 milestone started*
+*Last updated: 2026-01-26 after v1.2 milestone complete*
