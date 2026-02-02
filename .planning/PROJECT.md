@@ -47,7 +47,15 @@ Potential customers can quickly understand what services are offered, trust the 
 
 ### Active
 
-<!-- v1.3+: Future enhancements -->
+<!-- v1.3: Branding & Polish -->
+
+- [ ] Logo/branding audit — header and footer consistency across all pages
+- [ ] NICEIC badge on index page hero section
+- [ ] NICEIC badge rectangular display in footer (not circular)
+- [ ] NICEIC badge fixes on about page
+- [ ] Contact form working with n8n webhook
+
+<!-- v1.4+: Future enhancements (content from client) -->
 
 - [ ] Real customer testimonials replace placeholders
 - [ ] Real social media links replace placeholders
@@ -132,5 +140,14 @@ Potential customers can quickly understand what services are offered, trust the 
 | Progressive enhancement for voice | Hide section if MediaRecorder unavailable | ✓ Good |
 | 44px minimum touch targets | WCAG 2.5.8 compliance for mobile accessibility | ✓ Good |
 
+## Current Milestone: v1.3 Branding & Polish
+
+**Goal:** Audit and fix logo/branding changes, add NICEIC badge to key pages, and fix the contact form.
+
+**Target features:**
+- Logo consistency audit (header/footer across all 5 pages)
+- NICEIC badge visible on index and about pages
+- Contact form functional with n8n backend
+
 ---
-*Last updated: 2026-01-26 after v1.2 milestone complete*
+*Last updated: 2026-02-02 after v1.3 milestone started*
