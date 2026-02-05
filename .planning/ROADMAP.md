@@ -110,10 +110,10 @@ Plans:
   3. NICEIC badge visible in index page hero/credentials section
   4. NICEIC badge displays as rectangular image in all footers (not circular)
   5. NICEIC badge visible in about page credentials section
-**Plans**: TBD (will be created during planning)
+**Plans**: 1 plan
 
 Plans:
-- [ ] 08-01-PLAN.md — Logo and badge audit
+- [ ] 08-01-PLAN.md — Fix CSS conflict and replace styled text with actual NICEIC badge image
 
 #### Phase 9: Contact Form Fix
 **Goal**: Make contact form functional with n8n webhook backend
