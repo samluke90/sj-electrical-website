@@ -5,6 +5,7 @@
 - ✅ **v1.0 MVP** - Phases 1-3 (shipped 2026-01-22)
 - ✅ **v1.1 Form Functionality** - Phases 4-5 (shipped 2026-01-22)
 - ✅ **v1.2 Quote Form Enhancements** - Phases 6-7 (shipped 2026-01-26)
+- 🔄 **v1.3 Branding & Polish** - Phases 8-9 (in progress)
 
 ## Phases
 
@@ -94,6 +95,42 @@ Plans:
 
 </details>
 
+<details open>
+<summary>🔄 v1.3 Branding & Polish (Phases 8-9) - IN PROGRESS</summary>
+
+**Milestone Goal:** Audit and fix logo/branding changes across all pages, add NICEIC badge visibility, and fix contact form to use n8n webhook.
+
+#### Phase 8: Branding & Badge Audit
+**Goal**: Ensure consistent logo display and proper NICEIC badge visibility across all pages
+**Depends on**: Phase 7
+**Requirements**: BRAND-01, BRAND-02, BADGE-01, BADGE-02, BADGE-03
+**Success Criteria** (what must be TRUE):
+  1. Header logo displays correctly on all 5 pages (index, about, services, quote, contact)
+  2. Footer logo displays correctly on all 5 pages
+  3. NICEIC badge visible in index page hero/credentials section
+  4. NICEIC badge displays as rectangular image in all footers (not circular)
+  5. NICEIC badge visible in about page credentials section
+**Plans**: TBD (will be created during planning)
+
+Plans:
+- [ ] 08-01-PLAN.md — Logo and badge audit
+
+#### Phase 9: Contact Form Fix
+**Goal**: Make contact form functional with n8n webhook backend
+**Depends on**: Phase 8
+**Requirements**: FORM-01, FORM-02
+**Success Criteria** (what must be TRUE):
+  1. Contact form submits successfully to n8n webhook
+  2. User sees success confirmation after form submission
+  3. Form shows appropriate error message on failure
+  4. Form fields reset after successful submission
+**Plans**: TBD (will be created during planning)
+
+Plans:
+- [ ] 09-01-PLAN.md — Contact form n8n integration
+
+</details>
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -105,3 +142,5 @@ Plans:
 | 5. Form Functionality | v1.1 | 1/1 | Complete | 2026-01-22 |
 | 6. Formalize Implementation | v1.2 | 1/1 | Complete | 2026-01-23 |
 | 7. Testing & Polish | v1.2 | 2/2 | Complete | 2026-01-26 |
+| 8. Branding & Badge Audit | v1.3 | 0/1 | Pending | — |
+| 9. Contact Form Fix | v1.3 | 0/1 | Pending | — |
