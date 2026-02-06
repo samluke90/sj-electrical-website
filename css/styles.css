@@ -672,6 +672,14 @@ img {
     font-size: 0.95rem;
 }
 
+.credentials-badge-img {
+    width: 120px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+    border-radius: 4px;
+}
+
 /* ============================================
    Photo Quote CTA Section
    ============================================ */
