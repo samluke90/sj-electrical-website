@@ -113,7 +113,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 08-01-PLAN.md — Fix CSS conflict and replace styled text with actual NICEIC badge image
+- [x] 08-01-PLAN.md — Fix CSS conflict and replace styled text with actual NICEIC badge image
 
 #### Phase 9: Contact Form Fix
 **Goal**: Make contact form functional with n8n webhook backend
@@ -142,5 +142,5 @@ Plans:
 | 5. Form Functionality | v1.1 | 1/1 | Complete | 2026-01-22 |
 | 6. Formalize Implementation | v1.2 | 1/1 | Complete | 2026-01-23 |
 | 7. Testing & Polish | v1.2 | 2/2 | Complete | 2026-01-26 |
-| 8. Branding & Badge Audit | v1.3 | 0/1 | Pending | — |
+| 8. Branding & Badge Audit | v1.3 | 1/1 | Complete | 2026-02-06 |
 | 9. Contact Form Fix | v1.3 | 0/1 | Pending | — |

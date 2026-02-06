@@ -9,14 +9,14 @@ Requirements for milestone v1.3 Branding & Polish.
 
 ### Branding
 
-- [ ] **BRAND-01**: Header logo displays consistently across all 5 pages
-- [ ] **BRAND-02**: Footer logo displays consistently across all 5 pages
+- [x] **BRAND-01**: Header logo displays consistently across all 5 pages
+- [x] **BRAND-02**: Footer logo displays consistently across all 5 pages
 
 ### NICEIC Badge
 
-- [ ] **BADGE-01**: NICEIC badge visible in index page hero/credentials section
-- [ ] **BADGE-02**: NICEIC badge displays as rectangular image in footer (not circular)
-- [ ] **BADGE-03**: NICEIC badge visible in about page credentials section
+- [x] **BADGE-01**: NICEIC badge visible in index page hero/credentials section
+- [x] **BADGE-02**: NICEIC badge displays as rectangular image in footer (not circular)
+- [x] **BADGE-03**: NICEIC badge visible in about page credentials section
 
 ### Contact Form
 
@@ -47,11 +47,11 @@ Explicitly excluded from v1.3.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BRAND-01 | Phase 8 | Pending |
-| BRAND-02 | Phase 8 | Pending |
-| BADGE-01 | Phase 8 | Pending |
-| BADGE-02 | Phase 8 | Pending |
-| BADGE-03 | Phase 8 | Pending |
+| BRAND-01 | Phase 8 | Complete |
+| BRAND-02 | Phase 8 | Complete |
+| BADGE-01 | Phase 8 | Complete |
+| BADGE-02 | Phase 8 | Complete |
+| BADGE-03 | Phase 8 | Complete |
 | FORM-01 | Phase 9 | Pending |
 | FORM-02 | Phase 9 | Pending |
 
@@ -62,4 +62,4 @@ Explicitly excluded from v1.3.
 
 ---
 *Requirements defined: 2026-02-02*
-*Last updated: 2026-02-02 after initial definition*
+*Last updated: 2026-02-06 after Phase 8 completion*
