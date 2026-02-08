@@ -136,9 +136,7 @@
                     <h3>Send Us a Message</h3>
                     <p style="color: var(--dark-light); margin-bottom: 25px;">For detailed quotes with photo uploads, please use our <a href="quote.html">quote form</a>. This form is for general enquiries.</p>
 
-                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                        <!-- Web3Forms Access Key - Replace with your own -->
-                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                    <form id="contactForm" action="https://receptionist.jenk0.uk/api/contact" method="POST">
                         <input type="hidden" name="subject" value="Contact Form - SJ Electrical Contractors">
                         <input type="hidden" name="from_name" value="SJ Electrical Contractors Website">
 
@@ -315,9 +313,14 @@
             btn.innerHTML = '<span class="spinner"></span> Sending...';
 
             try {
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((v, k) => data[k] = v);
+                
                 const response = await fetch(this.action, {
                     method: 'POST',
-                    body: new FormData(this)
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
                 });
 
                 const result = await response.json();
@@ -329,7 +332,7 @@
                     throw new Error('Submission failed');
                 }
             } catch (error) {
-                alert('Sorry, there was an error. Please try again or call us directly.');
+                alert('Sorry, there was an error. Please try again or call us directly on 07875 210 678.');
             }
 
             btn.disabled = false;
