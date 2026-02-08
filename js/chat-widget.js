@@ -13,7 +13,7 @@
     style.textContent = `
         #sjec-chat-bubble {
             position: fixed;
-            bottom: 24px;
+            bottom: 130px;
             right: 24px;
             width: 64px;
             height: 64px;
@@ -46,7 +46,7 @@
 
         #sjec-chat-panel {
             position: fixed;
-            bottom: 100px;
+            bottom: 210px;
             right: 24px;
             width: 380px;
             max-width: calc(100vw - 48px);
@@ -212,7 +212,7 @@
                 max-height: 100%;
                 border-radius: 0;
             }
-            #sjec-chat-bubble { bottom: 16px; right: 16px; }
+            #sjec-chat-bubble { bottom: 130px; right: 16px; }
         }
     `;
     document.head.appendChild(style);
