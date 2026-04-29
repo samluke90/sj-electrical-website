@@ -5,7 +5,7 @@
 - ✅ **v1.0 MVP** - Phases 1-3 (shipped 2026-01-22)
 - ✅ **v1.1 Form Functionality** - Phases 4-5 (shipped 2026-01-22)
 - ✅ **v1.2 Quote Form Enhancements** - Phases 6-7 (shipped 2026-01-26)
-- 🔄 **v1.3 Branding & Polish** - Phases 8-9 (in progress)
+- ✅ **v1.3 Branding & Polish** - Phases 8-9 (shipped 2026-04-29)
 
 ## Phases
 
@@ -96,7 +96,7 @@ Plans:
 </details>
 
 <details open>
-<summary>🔄 v1.3 Branding & Polish (Phases 8-9) - IN PROGRESS</summary>
+<summary>✅ v1.3 Branding & Polish (Phases 8-9) - SHIPPED 2026-04-29</summary>
 
 **Milestone Goal:** Audit and fix logo/branding changes across all pages, add NICEIC badge visibility, and fix contact form to use n8n webhook.
 
@@ -124,10 +124,10 @@ Plans:
   2. User sees success confirmation after form submission
   3. Form shows appropriate error message on failure
   4. Form fields reset after successful submission
-**Plans**: TBD (will be created during planning)
+**Plans**: 1 plan
 
 Plans:
-- [ ] 09-01-PLAN.md — Contact form n8n integration
+- [x] 09-01-PLAN.md — Contact form n8n integration
 
 </details>
 
@@ -143,4 +143,4 @@ Plans:
 | 6. Formalize Implementation | v1.2 | 1/1 | Complete | 2026-01-23 |
 | 7. Testing & Polish | v1.2 | 2/2 | Complete | 2026-01-26 |
 | 8. Branding & Badge Audit | v1.3 | 1/1 | Complete | 2026-02-06 |
-| 9. Contact Form Fix | v1.3 | 0/1 | Pending | — |
+| 9. Contact Form Fix | v1.3 | 1/1 | Complete | 2026-04-29 |

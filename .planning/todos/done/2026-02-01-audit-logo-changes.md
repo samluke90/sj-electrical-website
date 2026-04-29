@@ -36,3 +36,15 @@ Manual testing needed:
 - Visual inspection on desktop/tablet/mobile
 - Verify logo sizing and positioning
 - Check NICEIC badge visibility and spacing
+
+---
+
+## Resolution
+
+Consumed by v1.3 Phase 8 Branding & Badge Audit.
+
+- Header and footer logo consistency verified across all 5 pages.
+- NICEIC badge CSS conflict fixed.
+- Badge now displays as the actual rectangular image in credentials/footer contexts.
+
+Closed: 2026-04-29 during v1.3 finalisation.

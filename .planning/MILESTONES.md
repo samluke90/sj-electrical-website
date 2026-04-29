@@ -1,5 +1,33 @@
 # Project Milestones: SJ Electrical Contractors Website
 
+## v1.3 Branding & Polish (Shipped: 2026-04-29)
+
+**Delivered:** Branding/badge audit plus functional general contact form.
+
+**Phases completed:** 8-9 (2 plans total)
+
+**Key accomplishments:**
+
+- NICEIC badge displays as a proper rectangular image in footers and credentials sections
+- Header and footer logo consistency verified across all 5 pages
+- Contact form moved from fragile inline JSON handler to FormData webhook submission
+- Accessible inline success/error states replaced browser alert popups
+- Contact form success path resets fields; failure path preserves fields for retry
+- Hidden honeypot spam field added to contact form
+
+**Stats:**
+
+- 3 site files modified (contact.html, css/styles.css, js/contact-form.js)
+- 2 planning files added for Phase 9
+- 2 phases, 2 plans, ~6 tasks
+- Phase 9 verified with headless Chromium success/failure-path tests
+
+**Git range:** `3df769f` → current v1.3 commit
+
+**What's next:** Real testimonials/Google review snippets, project gallery, local SEO area pages, clean Google Maps embed.
+
+---
+
 ## v1.2 Quote Form Enhancements (Shipped: 2026-01-26)
 
 **Delivered:** WhatsApp handoff, voice recording with cross-browser support, service-specific symptom checker, and mobile-accessible touch targets.

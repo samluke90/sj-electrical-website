@@ -1912,6 +1912,23 @@ select.form-control option {
     margin-bottom: 25px;
 }
 
+.contact-form-success {
+    padding: 24px 20px;
+    margin-bottom: 24px;
+    border: 2px solid rgba(0, 200, 83, 0.25);
+    border-radius: var(--radius);
+    background: rgba(0, 200, 83, 0.08);
+}
+
+.contact-form-success svg {
+    width: 64px;
+    height: 64px;
+}
+
+.contact-form-success h2 {
+    font-size: 1.5rem;
+}
+
 .map-section {
     padding: 0 0 60px;
 }
