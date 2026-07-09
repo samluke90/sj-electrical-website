@@ -235,7 +235,7 @@
             </div>
             <div class="sjec-chat-header-info">
                 <h3>SJ Electrical</h3>
-                <p>⚡ Online — typically replies instantly</p>
+                <p>⚡ Quick enquiry assistant</p>
             </div>
             <button class="sjec-chat-close" onclick="document.getElementById('sjec-chat-panel').classList.remove('open'); document.getElementById('sjec-chat-bubble').classList.remove('open');">✕</button>
         </div>
@@ -246,7 +246,7 @@
                 <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
         </div>
-        <div class="sjec-chat-powered">Powered by AI</div>
+        <div class="sjec-chat-powered">Need urgent help? Call 07875 210 678</div>
     `;
     document.body.appendChild(panel);
 
@@ -316,7 +316,7 @@
             addMessage('ai', data.text);
         } catch(e) {
             hideTyping();
-            addMessage('ai', "Sorry, I'm having trouble connecting. Please call us on 07875 210 678 for immediate help.");
+            addMessage('ai', "The chat is having a wobble. Please call 07875 210 678 for urgent help, or use the quote form with photos.");
         }
         
         isTyping = false;

@@ -110,9 +110,12 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements with data-animate attribute
+    // Observe elements with data-animate attribute.
+    // Do not force inline opacity:0 here — if IntersectionObserver is delayed,
+    // unsupported, or a full-page renderer misses the trigger, content becomes
+    // an invisible empty void. The fade animation still starts from opacity 0
+    // when the class is added, but the content remains readable as a fallback.
     document.querySelectorAll('[data-animate]').forEach(el => {
-        el.style.opacity = '0';
         observer.observe(el);
     });
 }
