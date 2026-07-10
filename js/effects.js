@@ -75,7 +75,6 @@ function listenForOtherTabs() {
 initPageLoader();
 
 document.addEventListener('DOMContentLoaded', function() {
-    initLightSwitch();
     initVoltageMeter();
 });
 

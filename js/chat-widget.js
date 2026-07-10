@@ -121,7 +121,39 @@
             border-radius: 16px;
             font-size: 0.9rem;
             line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
             animation: sjec-fadeIn 0.3s ease;
+        }
+        .sjec-chat-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-self: flex-start;
+            max-width: 90%;
+        }
+        .sjec-chat-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 9px 13px;
+            border: 1px solid rgba(255,140,0,0.55);
+            border-radius: 999px;
+            background: rgba(255,140,0,0.12);
+            color: #fff;
+            font-size: 0.84rem;
+            font-weight: 600;
+            line-height: 1.2;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .sjec-chat-action:hover,
+        .sjec-chat-action:focus-visible {
+            background: #FF8C00;
+            border-color: #FF8C00;
+            color: #fff;
+            outline: none;
         }
         @keyframes sjec-fadeIn {
             from { opacity: 0; transform: translateY(8px); }
@@ -221,40 +253,59 @@
     // Chat bubble
     const bubble = document.createElement('button');
     bubble.id = 'sjec-chat-bubble';
-    bubble.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`;
+    bubble.type = 'button';
+    bubble.setAttribute('aria-label', 'Open chat with SJ Electrical');
+    bubble.setAttribute('aria-expanded', 'false');
+    bubble.setAttribute('aria-controls', 'sjec-chat-panel');
+    bubble.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`;
     bubble.onclick = toggleChat;
     document.body.appendChild(bubble);
 
     // Chat panel
     const panel = document.createElement('div');
     panel.id = 'sjec-chat-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-label', 'SJ Electrical quick enquiry assistant');
+    panel.setAttribute('aria-hidden', 'true');
     panel.innerHTML = `
         <div class="sjec-chat-header">
             <div class="sjec-chat-header-icon">
-                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
             <div class="sjec-chat-header-info">
                 <h3>SJ Electrical</h3>
                 <p>⚡ Quick enquiry assistant</p>
             </div>
-            <button class="sjec-chat-close" onclick="document.getElementById('sjec-chat-panel').classList.remove('open'); document.getElementById('sjec-chat-bubble').classList.remove('open');">✕</button>
+            <button type="button" class="sjec-chat-close" aria-label="Close chat">✕</button>
         </div>
-        <div class="sjec-chat-messages" id="sjec-messages"></div>
+        <div class="sjec-chat-messages" id="sjec-messages" aria-live="polite"></div>
         <div class="sjec-chat-input">
-            <input type="text" id="sjec-input" placeholder="Ask us anything..." onkeydown="if(event.key==='Enter')document.getElementById('sjec-send').click()">
-            <button id="sjec-send" onclick="window._sjecSend()">
-                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            <input type="text" id="sjec-input" aria-label="Chat message" autocomplete="off" placeholder="Ask us anything...">
+            <button type="button" id="sjec-send" aria-label="Send message">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
         </div>
         <div class="sjec-chat-powered">Need urgent help? Call 07875 210 678</div>
     `;
     document.body.appendChild(panel);
 
+    const closeButton = panel.querySelector('.sjec-chat-close');
+    const input = panel.querySelector('#sjec-input');
+    const sendButton = panel.querySelector('#sjec-send');
+    closeButton.addEventListener('click', closeChat);
+    sendButton.addEventListener('click', () => window._sjecSend());
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') window._sjecSend();
+        if (event.key === 'Escape') closeChat();
+    });
+
     // ── Functions ───────────────────────────────────────────────────────
     function toggleChat() {
         isOpen = !isOpen;
         panel.classList.toggle('open', isOpen);
         bubble.classList.toggle('open', isOpen);
+        bubble.setAttribute('aria-expanded', String(isOpen));
+        panel.setAttribute('aria-hidden', String(!isOpen));
         
         if (isOpen && messages.length === 0) {
             // Send initial greeting
@@ -262,8 +313,17 @@
         }
         
         if (isOpen) {
-            setTimeout(() => document.getElementById('sjec-input').focus(), 100);
+            setTimeout(() => input.focus(), 100);
         }
+    }
+
+    function closeChat() {
+        isOpen = false;
+        panel.classList.remove('open');
+        bubble.classList.remove('open');
+        bubble.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+        bubble.focus();
     }
 
     function addMessage(role, text) {
@@ -272,11 +332,48 @@
         div.className = 'sjec-msg ' + role;
         div.textContent = text;
         container.appendChild(div);
+        if (role === 'ai') addContextActions(container, text);
         container.scrollTop = container.scrollHeight;
         
         if (role !== 'typing') {
             messages.push({role: role === 'ai' ? 'assistant' : 'user', content: text});
         }
+    }
+
+    function addContextActions(container, text) {
+        const lower = String(text || '').toLowerCase();
+        const actions = [];
+
+        if (/quote|estimate|price|photo/.test(lower)) {
+            actions.push({label: 'Get a free quote', href: 'quote.html'});
+        }
+        if (/call|phone|urgent|emergency/.test(lower)) {
+            actions.push({label: 'Call 07875 210 678', href: 'tel:07875210678'});
+        }
+        if (/whatsapp|text/.test(lower)) {
+            actions.push({label: 'Open WhatsApp', href: 'https://wa.me/447875210678'});
+        }
+
+        const unique = actions.filter((action, index, all) =>
+            all.findIndex(candidate => candidate.href === action.href) === index
+        );
+        if (!unique.length) return;
+
+        const actionRow = document.createElement('div');
+        actionRow.className = 'sjec-chat-actions';
+        actionRow.setAttribute('aria-label', 'Suggested actions');
+        unique.forEach(action => {
+            const link = document.createElement('a');
+            link.className = 'sjec-chat-action';
+            link.href = action.href;
+            link.textContent = action.label;
+            if (action.href.startsWith('https://')) {
+                link.target = '_blank';
+                link.rel = 'noopener';
+            }
+            actionRow.appendChild(link);
+        });
+        container.appendChild(actionRow);
     }
 
     function showTyping() {
