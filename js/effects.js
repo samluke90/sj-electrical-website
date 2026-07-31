@@ -76,6 +76,7 @@ initPageLoader();
 
 document.addEventListener('DOMContentLoaded', function() {
     initVoltageMeter();
+    initLightSwitch();
 });
 
 /* ============================================
