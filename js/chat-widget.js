@@ -7,6 +7,9 @@
     let messages = [];
     let isOpen = false;
     let isTyping = false;
+    const sessionId = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : 'chat-' + Date.now() + '-' + Math.random().toString(16).slice(2);
 
     // ── Inject Styles ──────────────────────────────────────────────────
     const style = document.createElement('style');
@@ -406,7 +409,10 @@
             const resp = await fetch(API + '/api/chat', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({messages: messages.map(m => ({role: m.role, content: m.content}))})
+                body: JSON.stringify({
+                    messages: messages.map(m => ({role: m.role, content: m.content})),
+                    session_id: sessionId
+                })
             });
             const data = await resp.json();
             hideTyping();
